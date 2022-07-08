@@ -4,7 +4,7 @@ function Arrow() {
   return (
     <div>
       <button type="button">
-        <i className="bi bi-arrow-left" />
+        <i className="bi bi-arrow-left-circle-fill" />
       </button>
     </div>
   );

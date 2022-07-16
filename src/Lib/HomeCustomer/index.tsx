@@ -2,6 +2,8 @@
 import React from "react";
 
 import HomeImg from "../../Assets/imageHome004.jpg";
+import FormImg from "../../Assets/imageMomsForm006.png";
+import Button from "../../Components/Button/Index";
 import InputText from "../../Components/InputText";
 import Navigationbarcustomer from "../Navigationbarcustomer";
 
@@ -9,7 +11,7 @@ function Support() {
   return (
     <>
       <Navigationbarcustomer />
-      <div className="w-full mt-24 mb-11">
+      <div className="w-full">
         <div className="w-full h-[700px] bg-gray-900/90 absolute">
           <img
             className="w-full h-full object-cover mix-blend-overlay"
@@ -21,6 +23,7 @@ function Support() {
           <div className="px-4 py-12">
             <h3 className="text-4xl font-bold py-6 text-center">
               {" "}
+              <br />
               BABYLAND.lk is Finding the you the right Nanny
             </h3>
             <p className="py-4 text-xl text-slate-300">
@@ -87,9 +90,19 @@ function Support() {
           </div>
         </div>
       </div>
-      <div className="w-full h-96 mt-24 mb-11 bg-red-100">
-        <h3> Submit Your Thoughts </h3>
-        <InputText />
+      <div className="w-full h-screen p-6 bg-white">
+        <h2 className="text-3xl font-bold text-black py-8">
+          A mother’s love is more beautiful than any fresh flower.
+        </h2>
+        <form>
+          <InputText
+            lbltitle="We would like to know your thoughts!"
+            idTitle="feedbackCommon"
+            placeholderWord="Your Suggections will be submitted annonymousely!"
+          />
+          <Button title="Submit" />
+          <img className="w-full h-80" src={FormImg} alt="/" />
+        </form>
       </div>
     </>
   );

@@ -7,7 +7,8 @@ import Button from "../../Components/Button/Index";
 import InputText from "../../Components/InputText";
 import Navigationbarcustomer from "../Navigationbarcustomer";
 
-function Support() {
+function Home() {
+  function navigateLogin() {}
   return (
     <>
       <Navigationbarcustomer />
@@ -100,7 +101,7 @@ function Support() {
             idTitle="feedbackCommon"
             placeholderWord="Your Suggections will be submitted annonymousely!"
           />
-          <Button title="Submit" />
+          <Button title="Submit" onClickHandler={() => navigateLogin} />
           <img className="w-full h-80" src={FormImg} alt="/" />
         </form>
       </div>
@@ -108,4 +109,4 @@ function Support() {
   );
 }
 
-export default Support;
+export default Home;

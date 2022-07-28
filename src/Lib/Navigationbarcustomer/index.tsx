@@ -1,11 +1,13 @@
 /* eslint-disable react/button-has-type */
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import logoImage from "../../Assets/imageLogo002.png";
 import Button from "../../Components/Button/Index";
 
 function Navigationbarcustomer() {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+  const navigate = useNavigate();
 
   return (
     <div className="w-screen h-[80px] z-10 bg-white fixed drop-shadow-lg">
@@ -33,7 +35,7 @@ function Navigationbarcustomer() {
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
-          <Button title="Sign In" />
+          <Button title="Sign In" onClickHandler={() => navigate("signin")} />
         </div>
         <button className="md:hidden mr-4" onClick={handleClick}>
           {!nav ? (
@@ -60,7 +62,7 @@ function Navigationbarcustomer() {
           <button className="px-8 py-3"> Contact </button>{" "}
         </li>
         <div className="flex flex-col my-4">
-          <Button title="Sign In" />
+          <Button title="Sign In" onClickHandler={() => null} />
         </div>
       </ul>
     </div>

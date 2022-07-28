@@ -1,18 +1,17 @@
-import React from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import HomeCustomer from "./Lib/HomeCustomer";
-import SidebarAdmin from "./Lib/SidebarAdmin";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import SignIn from "./Pages/Signin";
 
 function App() {
   return (
     // eslint-disable-next-line max-len
-    <>
-      <HomeCustomer />
-      <br />
-      <br />
-      <br />
-      <SidebarAdmin />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
+    </Router>
   );
 }
 

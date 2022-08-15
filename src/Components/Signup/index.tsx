@@ -16,7 +16,8 @@ function Signup() {
           <div className="flex flex-row">
             <h5 className="text-xl font-medium text-gray-900 dark:text-white">
               <img className="w-30 h-20 rounded-md" src={logoImage} alt="/" />
-              <Arrow /> Log into your Account
+              <Arrow onClickHandler={() => null} />
+              Log into your Account
             </h5>
           </div>
 

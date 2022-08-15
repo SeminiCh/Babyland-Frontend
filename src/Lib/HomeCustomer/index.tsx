@@ -4,6 +4,7 @@ import React from "react";
 import HomeImg from "../../Assets/imageHome004.jpg";
 import FormImg from "../../Assets/imageMomsForm006.png";
 import Button from "../../Components/Button/Index";
+import Footer from "../../Components/Footer";
 import InputText from "../../Components/InputText";
 import Navigationbarcustomer from "../Navigationbarcustomer";
 
@@ -105,6 +106,7 @@ function Home() {
           <img className="w-full h-80" src={FormImg} alt="/" />
         </form>
       </div>
+      <Footer />
     </>
   );
 }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Nanny from "./Pages/Nanny";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/Signin";
+import DetailedNanny from "./Pages/DetailedNannyView";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/nannies" element={<Nanny />} />
+        <Route path="/detailedNanny" element={<DetailedNanny />} />
       </Routes>
     </Router>
   );

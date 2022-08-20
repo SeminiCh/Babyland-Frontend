@@ -11,7 +11,7 @@ function NannyCard() {
           <img
             className="w-full h-72 p-8 rounded-t-lg"
             src={NannyImg}
-            alt="product image"
+            alt="nanny image"
           />
         </a>
         <div className="px-5 pb-5">

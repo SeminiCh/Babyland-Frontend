@@ -1,26 +1,69 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/alt-text */
 import React from "react";
+import NannyImg from "../../Assets/imageNanny005.jpg";
+import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
 function detailedNanny() {
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row">
-          <img
-            src="https://placeimg.com/260/400/arch"
-            className="max-w-sm rounded-lg shadow-2xl"
-          />
-          <div>
-            <h1 className="text-5xl font-bold">Box Office News!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+    <>
+      <Navigationbarcustomer />
+      <main className="flex items-center justify-center h-screen">
+        {" "}
+        <div className="w-fit h-fit m-10 bg-blue-50 p-5">
+          <div className="flex flex-row">
+            <div className="flex flex-col justify-between p-4 leading-normal">
+              {" "}
+              <img
+                className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                src={NannyImg}
+                alt=""
+              />
+              <div className="pt-5">
+                <p className="text-2xl"> Ramya Perera </p>
+                <p> Sunchine Caregivers pvt ltd </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between p-4 leading-normal">
+              <div className="bg-slate-200 p-5 rounded-md">
+                <p>
+                  {" "}
+                  Age : <span> 36 years </span>
+                </p>
+                <p>
+                  {" "}
+                  Nationality : <span> Sri Lankan </span>
+                </p>
+                <p>
+                  {" "}
+                  Religion : <span> Christian </span>
+                </p>
+                <p>
+                  {" "}
+                  Height/ Weight : <span> 169 cm / 65 kg </span>
+                </p>
+                <p>
+                  {" "}
+                  Age : <span> 36 years </span>
+                </p>
+              </div>
+              <div className="bg-slate-200 p-5 rounded-md ">
+                <h3> Reviews </h3>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  She is very punctual and polite and her loved my 2 years old
+                  and 6 years old sons very much.
+                </p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                  Mrs. Ramya never neglects her works she is very kind to my 4
+                  years old daughter.
+                </p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </div>{" "}
+      </main>
+    </>
   );
 }
 

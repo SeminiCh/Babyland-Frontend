@@ -4,6 +4,9 @@ import Nanny from "./Pages/Nanny";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/Signin";
 import DetailedNanny from "./Pages/DetailedNannyView";
+import SidebarAdmin from "./Pages/SidebarAdmin";
+import AddNanny from "./Pages/AddNannyForm";
+import SignInAdmin from "./Pages/SignInAdmin";
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/nannies" element={<Nanny />} />
         <Route path="/detailedNanny" element={<DetailedNanny />} />
+        <Route path="/SidebarAdmin" element={<SidebarAdmin />} />
+        <Route path="/AddNanny" element={<AddNanny />} />
+        <Route path="/signInAdmin" element={<SignInAdmin />} />
       </Routes>
     </Router>
   );

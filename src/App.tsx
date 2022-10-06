@@ -7,6 +7,8 @@ import DetailedNanny from "./Pages/DetailedNannyView";
 import SidebarAdmin from "./Pages/SidebarAdmin";
 import AddNanny from "./Pages/AddNannyForm";
 import SignInAdmin from "./Pages/SignInAdmin";
+import Nannies from "./Pages/NannyCustomer";
+import ParentInfo from "./Pages/ParentInformation";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/SidebarAdmin" element={<SidebarAdmin />} />
         <Route path="/AddNanny" element={<AddNanny />} />
         <Route path="/signInAdmin" element={<SignInAdmin />} />
+        <Route path="/nannyCustomer" element={<Nannies />} />
+        <Route path="/parentInformation" element={<ParentInfo />} />
       </Routes>
     </Router>
   );

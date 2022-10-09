@@ -3,7 +3,7 @@
 import React from "react";
 import { NannyData } from "../../Data/nannyData";
 
-function NannyCard({ name, image, experience, rating, type }: NannyData) {
+function NannyCard({ name, image, experience, rating, age }: NannyData) {
   return (
     <div className="m-8">
       <div className="max-w-xs bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -20,8 +20,7 @@ function NannyCard({ name, image, experience, rating, type }: NannyData) {
               {name}
             </h5>
             <p>{experience} </p>
-            <p>{type} </p>
-            <p>45 years </p>
+            <p>{age} </p>
           </a>
           <div className="flex items-center mt-2.5 mb-5">
             <svg

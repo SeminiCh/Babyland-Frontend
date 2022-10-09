@@ -1,13 +1,12 @@
 /* eslint-disable react/button-has-type */
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoImage from "../../Assets/imageLogo002.png";
 import Button from "../../Components/Button/Index";
 
 function Navigationbarcustomer() {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
-  const navigate = useNavigate();
 
   return (
     <div className="w-screen h-[80px] z-10 bg-white fixed drop-shadow-lg">
@@ -17,8 +16,10 @@ function Navigationbarcustomer() {
           <h1 className="text-3xl font-bold mr-5 sm:text-4xl"> BABYLAND.LK </h1>
           <ul className="hidden md:flex">
             <li className="m-2  text-red-800">
-              {" "}
-              <button className="px-8 py-3"> Home </button>{" "}
+              <Link to="/">
+                {" "}
+                <button className="px-8 py-3"> Home </button>{" "}
+              </Link>
             </li>
             <li className="m-2  text-red-800">
               <Link to="/nannies">
@@ -27,12 +28,16 @@ function Navigationbarcustomer() {
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              {" "}
-              <button className="px-8 py-3"> Your Nannies </button>{" "}
+              <Link to="/nannies">
+                {" "}
+                <button className="px-8 py-3"> Your Nannies </button>{" "}
+              </Link>
             </li>
             <li className="m-2  text-red-800">
-              {" "}
-              <button className="px-8 py-3"> Contact </button>
+              <Link to="/nannies">
+                {" "}
+                <button className="px-8 py-3"> Contact </button>{" "}
+              </Link>
             </li>
           </ul>
         </div>

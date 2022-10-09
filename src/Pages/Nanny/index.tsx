@@ -15,12 +15,12 @@ function Nanny() {
             industry.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-            {nannyData.map(({ id, name, experience, type, image, rating }) => (
+            {nannyData.map(({ id, name, experience, age, image, rating }) => (
               <div key={id} className="flex">
                 <NannyCard
                   name={name}
                   experience={experience}
-                  type={type}
+                  age={age}
                   image={image}
                   rating={rating}
                 />

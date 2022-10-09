@@ -4,6 +4,7 @@ import React from "react";
 import signupImage from "../../Assets/imageSignin003.jpg";
 import logoImage from "../../Assets/imageLogo002.png";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
+import Footer from "../../Components/Footer";
 
 function Register() {
   return (
@@ -88,6 +89,7 @@ function Register() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

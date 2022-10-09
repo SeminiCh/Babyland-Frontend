@@ -2,6 +2,7 @@
 /* eslint-disable max-len */
 import logoImage from "../../Assets/imageLogo002.png";
 import signupImage from "../../Assets/imageSignin001.jpg";
+import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
 function SignIn() {
@@ -113,6 +114,7 @@ function SignIn() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@ import React from "react";
 import NannyCard from "../../Components/NannyCard";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 import { nannyData } from "../../Data/nannyData";
+import Footer from "../../Components/Footer";
 
 function Nanny() {
   return (
@@ -29,6 +30,7 @@ function Nanny() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

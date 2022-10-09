@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
 function addNannyForm() {
@@ -179,6 +180,7 @@ function addNannyForm() {
           </button>
         </form>
       </div>
+      <Footer />
     </>
   );
 }

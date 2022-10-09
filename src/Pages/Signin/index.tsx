@@ -89,7 +89,7 @@ function SignIn() {
               <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Not registered?{" "}
                 <a
-                  href="Password"
+                  href="Register"
                   className="text-red-700 hover:underline dark:text-red-700"
                 >
                   Create account
@@ -103,7 +103,7 @@ function SignIn() {
                   Do you want to insert nanny details?
                 </label>
                 <a
-                  href="SignInAdmin"
+                  href="SignInAgent"
                   className="ml-auto text-sm text-red-700 hover:underline dark:text-red-700"
                 >
                   Click Here!

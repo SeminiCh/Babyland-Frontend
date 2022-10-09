@@ -2,7 +2,7 @@
 import React from "react";
 import logoImage from "../../Assets/imageLogo002.png";
 
-function SidebarAdmin() {
+function SidebarAgent() {
   return (
     <div>
       <aside className="w-64" aria-label="Sidebar">
@@ -164,4 +164,4 @@ function SidebarAdmin() {
   );
 }
 
-export default SidebarAdmin;
+export default SidebarAgent;

@@ -15,7 +15,7 @@ function InputText({ lbltitle, idTitle, placeholderWord }: any) {
         <input
           type="text"
           id={idTitle}
-          className="w-full m-4 h-52 bg-red-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block p-2.5 dark:bg-red-700 dark:border-red-800"
+          className="w-full h-52 bg-red-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block p-2.5 dark:bg-red-700 dark:border-red-800"
           placeholder={placeholderWord}
           required
         />

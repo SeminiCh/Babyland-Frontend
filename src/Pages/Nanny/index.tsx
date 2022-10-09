@@ -1,6 +1,7 @@
 import React from "react";
 import NannyCard from "../../Components/NannyCard";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
+import { nannyData } from "../../Data/nannyData";
 
 function Nanny() {
   return (
@@ -14,46 +15,17 @@ function Nanny() {
             industry.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-            <div className="flex">
-              <div>
-                <NannyCard />
+            {nannyData.map(({ id, name, experience, type, image, rating }) => (
+              <div key={id} className="flex">
+                <NannyCard
+                  name={name}
+                  experience={experience}
+                  type={type}
+                  image={image}
+                  rating={rating}
+                />
               </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
-            <div className="flex">
-              <div>
-                <NannyCard />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

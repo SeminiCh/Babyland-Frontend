@@ -92,7 +92,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full h-screen p-6 bg-white">
+      <div className="w-full p-6 bg-white">
         <h2 className="text-3xl font-bold text-black py-8">
           A mother’s love is more beautiful than any fresh flower.
         </h2>
@@ -102,7 +102,13 @@ function Home() {
             idTitle="feedbackCommon"
             placeholderWord="Your Suggections will be submitted annonymousely!"
           />
-          <Button title="Submit" onClickHandler={() => navigateLogin} />
+          <div className="w-full flex justify-end">
+            <Button
+              title="Submit"
+              extraTailwindClasses="mt-4"
+              onClickHandler={() => navigateLogin}
+            />
+          </div>
           <img className="w-full h-80" src={FormImg} alt="/" />
         </form>
       </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import logoImage from "../../Assets/imageLogo002.png";
 import Button from "../../Components/Button/Index";
 
@@ -21,8 +21,10 @@ function Navigationbarcustomer() {
               <button className="px-8 py-3"> Home </button>{" "}
             </li>
             <li className="m-2  text-red-800">
-              {" "}
-              <button className="px-8 py-3"> Nannies </button>{" "}
+              <Link to="/nannies">
+                {" "}
+                <button className="px-8 py-3"> Nannies </button>{" "}
+              </Link>
             </li>
             <li className="m-2  text-red-800">
               {" "}
@@ -35,7 +37,9 @@ function Navigationbarcustomer() {
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
-          <Button title="Sign In" onClickHandler={() => navigate("signin")} />
+          <Link to="/signin">
+            <Button title="Sign In" />
+          </Link>
         </div>
         <button className="md:hidden mr-4" onClick={handleClick}>
           {!nav ? (

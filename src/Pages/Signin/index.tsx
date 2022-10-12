@@ -90,7 +90,7 @@ function SignIn() {
               <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Not registered?{" "}
                 <a
-                  href="Register"
+                  href="RegisterCustomer"
                   className="text-red-700 hover:underline dark:text-red-700"
                 >
                   Create account

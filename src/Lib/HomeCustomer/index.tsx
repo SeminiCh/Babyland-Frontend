@@ -37,7 +37,10 @@ function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-black">
             <div className="bg-white rounded-xl shadow-2xl">
               <div className="p-8">
-                <h3 className="font-bold text-2xl my-6"> Sales </h3>
+                <h3 className="font-bold text-2xl my-6">
+                  {" "}
+                  Trustworthy Nannies{" "}
+                </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
                   Lorem Ipsum is simply dummy text of the printing and
@@ -49,13 +52,13 @@ function Home() {
               <div className="bg-slate-100 pl-8 py-4">
                 <p className="flex items-center text-indigo-600">
                   {" "}
-                  Contact Us{" "}
+                  Find a Nanny{" "}
                 </p>
               </div>
             </div>
             <div className="bg-white rounded-xl shadow-2xl">
               <div className="p-8">
-                <h3 className="font-bold text-2xl my-6"> Media Inquiries </h3>
+                <h3 className="font-bold text-2xl my-6"> 24 Hours Service </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
                   Lorem Ipsum is simply dummy text of the printing and
@@ -67,13 +70,13 @@ function Home() {
               <div className="bg-slate-100 pl-8 py-4">
                 <p className="flex items-center text-indigo-600">
                   {" "}
-                  Contact Us{" "}
+                  Find a Nanny{" "}
                 </p>
               </div>
             </div>
             <div className="bg-white rounded-xl shadow-2xl">
               <div className="p-8">
-                <h3 className="font-bold text-2xl my-6"> Technical Support </h3>
+                <h3 className="font-bold text-2xl my-6"> Reliable Service </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
                   Lorem Ipsum is simply dummy text of the printing and
@@ -85,7 +88,7 @@ function Home() {
               <div className="bg-slate-100 pl-8 py-4">
                 <p className="flex items-center text-indigo-600">
                   {" "}
-                  Contact Us{" "}
+                  Find a Nanny{" "}
                 </p>
               </div>
             </div>

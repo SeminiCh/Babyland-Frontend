@@ -9,6 +9,7 @@ import AddNanny from "./Pages/AddNannyForm";
 import SignInAgent from "./Pages/SignInAgent";
 import ParentInfo from "./Pages/ParentInformation";
 import RegisterCustomer from "./Pages/RegisterCustomer";
+import NannyTableAgent from "./Pages/NannyTableAgent";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
 
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
+        <Route path="/nannyTable" element={<NannyTableAgent />} />
       </Routes>
     </Router>
   );

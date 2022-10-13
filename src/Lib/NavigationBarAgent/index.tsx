@@ -59,7 +59,9 @@ function NavigationbarAgent() {
           <button className="px-8 py-3"> Assigned Nannies </button>{" "}
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <button className="px-8 py-3"> Add Nannies </button>
+          <Link to="/AddNanny">
+            <button className="px-8 py-3"> Add Nannies </button>
+          </Link>
         </li>
         <div className="flex flex-col my-4">
           <Button title="Log out" onClickHandler={() => null} />

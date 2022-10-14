@@ -60,7 +60,7 @@ function NavigationbarAgent() {
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
           <Link to="/AddNanny">
-            <button className="px-8 py-3"> Add Nannies </button>
+            <button className="px-8 py-3"> Add Nanny </button>
           </Link>
         </li>
         <div className="flex flex-col my-4">

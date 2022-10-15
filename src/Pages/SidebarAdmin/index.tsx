@@ -5,19 +5,16 @@ import logoImage from "../../Assets/imageLogo002.png";
 function SidebarAdmin() {
   return (
     <div>
-      <aside className="w-64" aria-label="Sidebar">
+      <aside className="w-64 h-screen" aria-label="Sidebar">
         <div className="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
-          <a
-            href="https://flowbite.com/"
-            className="flex items-center pl-2.5 mb-5"
-          >
+          <a href="#hh" className="flex items-center pl-2.5 mb-5">
             <img
               src={logoImage}
               className="mr-3 h-6 sm:h-7"
-              alt="Flowbite Logo"
+              alt="Babyland Logo"
             />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
+              BABYLAND.LK
             </span>
           </a>
           <ul className="space-y-2">
@@ -51,10 +48,7 @@ function SidebarAdmin() {
                 >
                   <path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Kanban</span>
-                <span className="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                  Pro
-                </span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Nannies</span>
               </a>
             </li>
             <li>

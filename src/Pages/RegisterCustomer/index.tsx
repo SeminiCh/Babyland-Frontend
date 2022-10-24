@@ -1,28 +1,37 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
-import React, { useState } from "react";
+
+import { useForm } from "react-hook-form";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 import RegisterImage from "../../Assets/imageRegister006.jpg";
 import logoImage from "../../Assets/imageLogo002.png";
 
+interface CustomerFormData {
+  usernameCustomer: String;
+  emailCustomer: String;
+  passwordCustomer: String;
+}
+
 function RegisterCustomer() {
-  const initialValues = {
-    usernameCustomer: "",
-    emailCustomer: "",
-    passwordCustomer: "",
-  };
-  const [formValues, setFormValues] = useState(initialValues);
-  const handleChange = (e) => {
-    console.log(e.target);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CustomerFormData>({ mode: "onChange" });
+
+  const onSubmit = handleSubmit(
+    ({ usernameCustomer, emailCustomer, passwordCustomer }) => {
+      console.log(usernameCustomer, emailCustomer, passwordCustomer);
+    },
+  );
   return (
     <>
       <Navigationbarcustomer />
       <main className="flex items-center justify-center h-screen pt-28">
         <div className="bg-white rounded-lg border-gray-500 shadow-md flex justify-center items-center">
           <div className="flex-1 p-4 max-w-sm bg-red-100 rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <form className="space-y-6" action="#">
+            <form className="space-y-6" onSubmit={onSubmit}>
               <h5 className="text-xl flex items-center font-medium text-gray-900 dark:text-white">
                 <img className="w-30 h-20 rounded-md" src={logoImage} alt="/" />
                 <p>Create an Account</p>
@@ -35,15 +44,17 @@ function RegisterCustomer() {
                   Username
                 </label>
                 <input
+                  {...register("usernameCustomer", {
+                    required: true,
+                  })}
                   type="text"
                   name="usernameCustomer"
                   id="usernameCustomer"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="Raini00"
                   required
-                  value={formValues.usernameCustomer}
-                  onChange={handleChange}
                 />
+                {errors.usernameCustomer && "Username is Invalid"}
               </div>
               <div>
                 <label
@@ -59,7 +70,6 @@ function RegisterCustomer() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@gmail.com"
                   required
-                  value={formValues.emailCustomer}
                 />
               </div>
               <div>
@@ -76,7 +86,6 @@ function RegisterCustomer() {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
-                  value={formValues.passwordCustomer}
                 />
               </div>
 

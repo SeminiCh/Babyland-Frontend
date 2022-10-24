@@ -1,12 +1,21 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 import RegisterImage from "../../Assets/imageRegister006.jpg";
 import logoImage from "../../Assets/imageLogo002.png";
 
 function RegisterCustomer() {
+  const initialValues = {
+    usernameCustomer: "",
+    emailCustomer: "",
+    passwordCustomer: "",
+  };
+  const [formValues, setFormValues] = useState(initialValues);
+  const handleChange = (e) => {
+    console.log(e.target);
+  };
   return (
     <>
       <Navigationbarcustomer />
@@ -32,6 +41,8 @@ function RegisterCustomer() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="Raini00"
                   required
+                  value={formValues.usernameCustomer}
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -48,6 +59,7 @@ function RegisterCustomer() {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@gmail.com"
                   required
+                  value={formValues.emailCustomer}
                 />
               </div>
               <div>
@@ -64,6 +76,7 @@ function RegisterCustomer() {
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required
+                  value={formValues.passwordCustomer}
                 />
               </div>
 

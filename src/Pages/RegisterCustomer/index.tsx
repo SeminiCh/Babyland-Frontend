@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 
@@ -22,9 +24,35 @@ function RegisterCustomer() {
 
   const onSubmit = handleSubmit(
     ({ usernameCustomer, emailCustomer, passwordCustomer }) => {
-      console.log(usernameCustomer, emailCustomer, passwordCustomer);
+      const customer = {
+        usernameCustomer,
+        emailCustomer,
+        passwordCustomer,
+      };
+
+      fetch("http://localhost:8080/api/v1/customer/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(customer),
+      }).then(() => {
+        console.log("New Customer is added!");
+      });
     },
   );
+
+  // const handleClick = (e: { preventDefault: () => any; })=>{
+  //   e.preventDefault()
+  //   const customer = {usernameCustomer:, emailCustomer, passwordCustomer}
+  //   console.log (usernameCustomer, emailCustomer, passwordCustomer)
+  //   fetch ("http://localhost8080/api/v1/customer", {
+  //     method : "POST",
+  //     headers: {"Content-Type":"application/json"}
+  //     body: JSON.stringify(customer)
+
+  //   }).then(()=>{
+  //     console.log("New Customer is added!")
+  //   })
+  // }
   return (
     <>
       <Navigationbarcustomer />
@@ -46,15 +74,18 @@ function RegisterCustomer() {
                 <input
                   {...register("usernameCustomer", {
                     required: true,
+                    minLength: 8,
                   })}
                   type="text"
                   name="usernameCustomer"
                   id="usernameCustomer"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="Raini00"
-                  required
                 />
-                {errors.usernameCustomer && "Username is Invalid"}
+                <p className="text-red-600 text-xs">
+                  {errors.usernameCustomer &&
+                    "Invalid! Minimum Length should be 8 characters."}
+                </p>
               </div>
               <div>
                 <label
@@ -64,13 +95,19 @@ function RegisterCustomer() {
                   Email
                 </label>
                 <input
+                  // eslint-disable-next-line react/jsx-props-no-spreading
+                  {...register("emailCustomer", {
+                    required: true,
+                  })}
                   type="email"
                   name="emailCustomer"
                   id="emailCustomer"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@gmail.com"
-                  required
                 />
+                <p className="text-red-600 text-xs">
+                  {errors.emailCustomer && "Invalid! Please enter the email."}
+                </p>
               </div>
               <div>
                 <label
@@ -80,13 +117,19 @@ function RegisterCustomer() {
                   Your password
                 </label>
                 <input
+                  {...register("passwordCustomer", {
+                    required: true,
+                  })}
                   type="password"
                   name="passwordCustomer"
                   id="passwordCustomer"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                  required
                 />
+                <p className="text-red-600 text-xs">
+                  {errors.passwordCustomer &&
+                    "Invalid! Minimum Length should be 10 characters."}
+                </p>
               </div>
 
               <button

@@ -10,6 +10,7 @@ import SignInAgent from "./Pages/SignInAgent";
 import ParentInfo from "./Pages/ParentInformation";
 import RegisterCustomer from "./Pages/RegisterCustomer";
 import NannyTableAgent from "./Pages/NannyTableAgent";
+import AddAgentForm from "./Pages/AddAgentForm";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
         <Route path="/SidebarAdmin" element={<SidebarAdmin />} />
         <Route path="/AddNanny" element={<AddNanny />} />
         <Route path="/signInAgent" element={<SignInAgent />} />
-
+        <Route path="/addAgent" element={<AddAgentForm />} />
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
         <Route path="/nannyTable" element={<NannyTableAgent />} />

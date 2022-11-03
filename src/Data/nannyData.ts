@@ -6,6 +6,7 @@ export interface NannyData {
   image: string;
   rating: number;
 }
+
 export const nannyData: NannyData[] = [
   {
     id: 1,

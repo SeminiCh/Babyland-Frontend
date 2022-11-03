@@ -1,15 +1,101 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import { useForm } from "react-hook-form";
+
 import Footer from "../../Components/Footer";
 import NavigationbarAgent from "../../Lib/NavigationBarAgent";
 
+interface NannyFormData {
+  nannyFullName: String;
+  nannyNic: String;
+  nannyAge: number;
+  nannyReligion: String;
+  nannyNationality: String;
+  nannyWeight: number;
+  nannyHeight: number;
+  nannyLeavePreferences: String;
+  nannyLanguages: String;
+  nannyWorkingHours: String;
+  nannyQualification: String;
+  nannyQualificationFile: String;
+  nannyImage: String;
+  nannyVegetaian: String;
+  nannyVegetarian: String;
+  nannyPetLover: String;
+  availability: "Yes";
+  nannyDifferentlyAbledCare: String;
+  agentCompanyName: String;
+}
+
 function addNannyForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+  } = useForm<NannyFormData>({ mode: "onChange" });
+
+  const onSubmit = handleSubmit(
+    ({
+      nannyFullName,
+      nannyNic,
+      nannyAge,
+      nannyReligion,
+      nannyNationality,
+      nannyWeight,
+      nannyHeight,
+      nannyLeavePreferences,
+      nannyLanguages,
+      nannyWorkingHours,
+      nannyQualification,
+      nannyQualificationFile,
+      nannyImage,
+      nannyVegetaian,
+      nannyVegetarian,
+      nannyPetLover,
+      availability,
+      nannyDifferentlyAbledCare,
+      agentCompanyName,
+    }) => {
+      const Nanny = {
+        nannyFullName,
+        nannyNic,
+        nannyAge,
+        nannyReligion,
+        nannyNationality,
+        nannyWeight,
+        nannyHeight,
+        nannyLeavePreferences,
+        nannyLanguages,
+        nannyWorkingHours,
+        nannyQualification,
+        nannyQualificationFile,
+        nannyImage,
+        nannyVegetaian,
+        nannyVegetarian,
+        nannyPetLover,
+        availability,
+        nannyDifferentlyAbledCare,
+        agentCompanyName,
+      };
+
+      fetch("http://localhost:8080/api/v1/nanny/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Nanny),
+      }).then(() => {
+        console.log("New Nanny is added!");
+      });
+    },
+  );
   return (
     <>
       <NavigationbarAgent />
       <div className="p-24">
-        <form>
+        <form onSubmit={onSubmit}>
           <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
             Please fill this
           </h3>
@@ -88,12 +174,37 @@ function addNannyForm() {
                 Full Name
               </label>
               <input
+                {...register("nannyFullName", {
+                  required: true,
+                })}
                 type="text"
                 id="nannyFullName"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Semini Pathirana"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyFullName && "Invalid! Full Name Cannot Be empty."}
+              </p>
+            </div>
+            <div>
+              <label
+                htmlFor="nannyNic"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                NIC
+              </label>
+              <input
+                {...register("nannyNic", {
+                  required: true,
+                })}
+                type="text"
+                id="nannyNic"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="997300990V"
+              />
+              <p className="text-red-600 text-xs">
+                {errors.nannyNic && "Invalid! NIC Cannot Be empty."}
+              </p>
             </div>
             <div>
               <label
@@ -104,7 +215,10 @@ function addNannyForm() {
                 Age
               </label>
               <input
-                type="text"
+                {...register("nannyAge", {
+                  required: true,
+                })}
+                type="number"
                 id="nannyAge"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="25"
@@ -119,6 +233,9 @@ function addNannyForm() {
                 Religion
               </label>
               <input
+                {...register("nannyReligion", {
+                  required: true,
+                })}
                 type="text"
                 id="nannyReligion"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -134,6 +251,9 @@ function addNannyForm() {
                 Nationality
               </label>
               <input
+                {...register("nannyNationality", {
+                  required: true,
+                })}
                 type="text"
                 id="nannyNationality"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -149,6 +269,9 @@ function addNannyForm() {
                 Weight
               </label>
               <input
+                {...register("nannyWeight", {
+                  required: true,
+                })}
                 type="number"
                 id="nannyWeight"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -165,6 +288,9 @@ function addNannyForm() {
                 Height
               </label>
               <input
+                {...register("nannyHeight", {
+                  required: true,
+                })}
                 type="number"
                 id="nannyHeight"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -180,6 +306,9 @@ function addNannyForm() {
                 Working Hours
               </label>
               <input
+                {...register("nannyWorkingHours", {
+                  required: true,
+                })}
                 type="text"
                 id="nannyWorkingHours"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -195,6 +324,9 @@ function addNannyForm() {
                 Leave Preferences
               </label>
               <input
+                {...register("nannyLeavePreferences", {
+                  required: true,
+                })}
                 type="text"
                 id="nannyLeavePreferences"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -211,6 +343,9 @@ function addNannyForm() {
               Languages
             </label>
             <input
+              {...register("nannyLanguages", {
+                required: true,
+              })}
               type="text"
               id="nannyLanguages"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -220,34 +355,23 @@ function addNannyForm() {
           </div>
           <div className="mb-6">
             <label
-              htmlFor="nannyExperience"
+              htmlFor="nannyQualification"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              Experience
+              Qualification
             </label>
             <input
+              {...register("nannyQualification", {
+                required: true,
+              })}
               type="text"
-              id="nannyExperience"
+              id="nannyQualification"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="5 years experience as a nanny"
               required
             />
           </div>
-          <div className="mb-6">
-            <label
-              htmlFor="nannyQualification"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Qualifications
-            </label>
-            <input
-              type="text"
-              id="nannyQualification"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Certified Nanny at VTA"
-              required
-            />
-          </div>
+
           <div className="mb-6">
             <label
               htmlFor="nannyQualificationFile"
@@ -256,6 +380,9 @@ function addNannyForm() {
               Upload certifications here
             </label>
             <input
+              {...register("nannyQualificationFile", {
+                required: true,
+              })}
               type="file"
               id="nannyQualificationFile"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -271,6 +398,9 @@ function addNannyForm() {
               Image
             </label>
             <input
+              {...register("nannyImage", {
+                required: true,
+              })}
               type="file"
               id="nannyImage"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -286,6 +416,9 @@ function addNannyForm() {
               Company Name
             </label>
             <input
+              {...register("agentCompanyName", {
+                required: true,
+              })}
               type="text"
               id="agentCompanyName"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

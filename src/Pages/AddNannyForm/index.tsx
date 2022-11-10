@@ -23,7 +23,6 @@ interface NannyFormData {
   nannyQualificationFile: String;
   nannyImage: String;
   nannyVegetaian: String;
-  nannyVegetarian: String;
   nannyPetLover: String;
   availability: "Yes";
   nannyDifferentlyAbledCare: String;
@@ -54,13 +53,12 @@ function addNannyForm() {
       nannyQualificationFile,
       nannyImage,
       nannyVegetaian,
-      nannyVegetarian,
       nannyPetLover,
       availability,
       nannyDifferentlyAbledCare,
       agentCompanyName,
     }) => {
-      const Nanny = {
+      const nanny = {
         nannyFullName,
         nannyNic,
         nannyAge,
@@ -75,7 +73,6 @@ function addNannyForm() {
         nannyQualificationFile,
         nannyImage,
         nannyVegetaian,
-        nannyVegetarian,
         nannyPetLover,
         availability,
         nannyDifferentlyAbledCare,
@@ -85,7 +82,7 @@ function addNannyForm() {
       fetch("http://localhost:8080/api/v1/nanny/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(Nanny),
+        body: JSON.stringify(nanny),
       }).then(() => {
         console.log("New Nanny is added!");
       });
@@ -119,6 +116,9 @@ function addNannyForm() {
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
+                  {...register("nannyPetLover", {
+                    required: true,
+                  })}
                   id="nannyPetLover"
                   type="checkbox"
                   value="Pet Lover"
@@ -135,6 +135,9 @@ function addNannyForm() {
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
+                  {...register("nannyDifferentlyAbledCare", {
+                    required: true,
+                  })}
                   id="nannyDifferentlyAbledCare"
                   type="checkbox"
                   value="Specialized in differently Abled child care"
@@ -151,13 +154,16 @@ function addNannyForm() {
             <li className="w-full dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
-                  id="nannyVegetarian"
+                  {...register("nannyVegetaian", {
+                    required: true,
+                  })}
+                  id="nannyVegetaian"
                   type="checkbox"
                   value="Vegitarian"
                   className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
                 />
                 <label
-                  htmlFor="nannyVegetarian"
+                  htmlFor="nannyVegetaian"
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Vegetarian
@@ -222,8 +228,10 @@ function addNannyForm() {
                 id="nannyAge"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="25"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyAge && "Invalid! Age Cannot Be empty."}
+              </p>
             </div>
             <div>
               <label
@@ -240,8 +248,10 @@ function addNannyForm() {
                 id="nannyReligion"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Buddhism"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyReligion && "Invalid! Religion Cannot Be empty."}
+              </p>
             </div>
             <div>
               <label
@@ -258,8 +268,11 @@ function addNannyForm() {
                 id="nannyNationality"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Sri Lankan"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyNationality &&
+                  "Invalid! Nationality Cannot Be empty."}
+              </p>
             </div>
             <div className="mb-6">
               <label
@@ -276,8 +289,10 @@ function addNannyForm() {
                 id="nannyWeight"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="48"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyWeight && "Invalid! Weight Cannot Be empty."}
+              </p>
             </div>
 
             <div>
@@ -295,8 +310,10 @@ function addNannyForm() {
                 id="nannyHeight"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="160"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyHeight && "Invalid! Height Cannot Be empty."}
+              </p>
             </div>
             <div>
               <label
@@ -313,8 +330,11 @@ function addNannyForm() {
                 id="nannyWorkingHours"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Weekdays 6AM to 8PM "
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyWorkingHours &&
+                  "Invalid! Working Hours Cannot Be empty."}
+              </p>
             </div>
             <div>
               <label
@@ -331,8 +351,11 @@ function addNannyForm() {
                 id="nannyLeavePreferences"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="1 Day per Month"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.nannyLeavePreferences &&
+                  "Invalid! Leave Preferences Cannot Be empty."}
+              </p>
             </div>
           </div>
           <div>
@@ -350,8 +373,10 @@ function addNannyForm() {
               id="nannyLanguages"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Sinhala, English"
-              required
             />
+            <p className="text-red-600 text-xs">
+              {errors.nannyLanguages && "Invalid! Languages Cannot Be empty."}
+            </p>
           </div>
           <div className="mb-6">
             <label
@@ -368,8 +393,11 @@ function addNannyForm() {
               id="nannyQualification"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="5 years experience as a nanny"
-              required
             />
+            <p className="text-red-600 text-xs">
+              {errors.nannyQualification &&
+                "Invalid! Qualification Cannot Be empty."}
+            </p>
           </div>
 
           <div className="mb-6">
@@ -387,8 +415,11 @@ function addNannyForm() {
               id="nannyQualificationFile"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="•••••••••"
-              required
             />
+            <p className="text-red-600 text-xs">
+              {errors.nannyQualificationFile &&
+                "Please upload file! This Cannot Be empty."}
+            </p>
           </div>
           <div className="mb-6">
             <label
@@ -405,8 +436,10 @@ function addNannyForm() {
               id="nannyImage"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="•••••••••"
-              required
             />
+            <p className="text-red-600 text-xs">
+              {errors.nannyImage && "Please upload file! This Cannot Be empty."}
+            </p>
           </div>
           <div className="mb-6">
             <label
@@ -423,8 +456,11 @@ function addNannyForm() {
               id="agentCompanyName"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Sunflower Care Govers Providers Ltd."
-              required
             />
+            <p className="text-red-600 text-xs">
+              {errors.agentCompanyName &&
+                "Invalid! Company Name Cannot Be empty."}
+            </p>
           </div>
 
           <button

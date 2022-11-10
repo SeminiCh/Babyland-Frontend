@@ -1,9 +1,22 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function agentTable() {
+  const [agentData, setAgentData] = useState<any>([]);
+  useEffect(() => {
+    const dataAgent = async () => {
+      const responseAgent = await fetch("http://localhost:8080/api/v1/agent", {
+        method: "POST",
+        mode: "no-cors",
+      })
+        .then((response) => response.json())
+        .then((data) => setAgentData(data));
+    };
+  }, []);
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg p-24 pt-28">
       <div className="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
@@ -49,16 +62,23 @@ function agentTable() {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-            <td className="py-4 px-6">SunFlower Caregivers </td>
-
-            <a
-              href="/"
-              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-            >
-              Edit user
-            </a>
-          </tr>
+          {agentData.map((agent: any) => {
+            return (
+              <tr
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                key={agent.id}
+              >
+                <td className="py-4 px-6"> {agent.agentCopmanyName} </td>
+                <td className="py-4 px-6"> No Pdf </td>
+                <a
+                  href="/"
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >
+                  Edit user
+                </a>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import NannyCard from "../../Components/NannyCard";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";

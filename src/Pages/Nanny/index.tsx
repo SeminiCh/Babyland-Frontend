@@ -9,14 +9,12 @@ import image from "../../Assets/imageNanny005.jpg";
 function Nanny() {
   const [nannyData, setNannyData] = useState<any>([]);
   useEffect(() => {
-    const dataNanny = async () => {
-      const responseNanny = await fetch("http://localhost:8080/api/v1/nanny", {
-        method: "POST",
-        mode: "no-cors",
-      })
-        .then((response) => response.json())
-        .then((data) => setNannyData(data));
-    };
+    fetch("http://localhost:8080/api/v1/nanny", {
+      method: "POST",
+      mode: "no-cors",
+    })
+      .then((response) => response.json())
+      .then((data) => setNannyData(data));
   }, []);
   return (
     <>

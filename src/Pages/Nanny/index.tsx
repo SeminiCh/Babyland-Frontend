@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import NannyCard from "../../Components/NannyCard";
@@ -5,17 +6,21 @@ import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 // import { nannyData } from "../../Data/nannyData";
 import Footer from "../../Components/Footer";
 import image from "../../Assets/imageNanny005.jpg";
+import NannyService from "../../api/services/NannyService";
 
 function Nanny() {
   const [nannyData, setNannyData] = useState<any>([]);
+
   useEffect(() => {
-    fetch("http://localhost:8080/api/v1/nanny", {
-      method: "POST",
-      mode: "no-cors",
-    })
-      .then((response) => response.json())
-      .then((data) => setNannyData(data));
-  }, []);
+    async function fetchNannyData() {
+      const response = await NannyService.getAllNannies();
+      if (response) {
+        setNannyData(response?.data);
+      }
+    }
+    fetchNannyData();
+  });
+
   return (
     <>
       <Navigationbarcustomer />
@@ -29,8 +34,9 @@ function Nanny() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
             {nannyData.map((nanny: any) => {
               return (
-                <div key={nanny.id} className="flex">
+                <div className="flex">
                   <NannyCard
+                    key={nanny.id}
                     name={nanny.nannyFullName}
                     experience={nanny.nannyQualification}
                     age={nanny.nannyAge}

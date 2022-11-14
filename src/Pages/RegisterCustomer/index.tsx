@@ -40,19 +40,6 @@ function RegisterCustomer() {
     },
   );
 
-  // const handleClick = (e: { preventDefault: () => any; })=>{
-  //   e.preventDefault()
-  //   const customer = {usernameCustomer:, emailCustomer, passwordCustomer}
-  //   console.log (usernameCustomer, emailCustomer, passwordCustomer)
-  //   fetch ("http://localhost8080/api/v1/customer", {
-  //     method : "POST",
-  //     headers: {"Content-Type":"application/json"}
-  //     body: JSON.stringify(customer)
-
-  //   }).then(()=>{
-  //     console.log("New Customer is added!")
-  //   })
-  // }
   return (
     <>
       <Navigationbarcustomer />

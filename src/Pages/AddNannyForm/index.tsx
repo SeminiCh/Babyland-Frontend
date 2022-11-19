@@ -78,7 +78,6 @@ function addNannyForm() {
         nannyDifferentlyAbledCare,
         agentCompanyName,
       };
-
       fetch("http://localhost:8080/api/v1/nanny/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

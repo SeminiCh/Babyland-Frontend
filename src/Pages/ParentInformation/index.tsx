@@ -1,15 +1,66 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
+import { useForm } from "react-hook-form";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
+interface ParentFormData {
+  parentFullName: String;
+  parentRelationshipToBaby: String;
+  parentAddress: String;
+  parentPhoneMoile: String;
+  parentNic: String;
+  parentBabyAge: String;
+  parentNicCopy: String;
+  nannyNic: String;
+}
+
 function parentInfomation() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ParentFormData>({ mode: "onChange" });
+
+  const onSubmit = handleSubmit(
+    ({
+      parentFullName,
+      parentRelationshipToBaby,
+      parentAddress,
+      parentPhoneMoile,
+      parentNic,
+      parentBabyAge,
+      parentNicCopy,
+      nannyNic,
+    }) => {
+      const parent = {
+        parentFullName,
+        parentRelationshipToBaby,
+        parentAddress,
+        parentPhoneMoile,
+        parentNic,
+        parentBabyAge,
+        parentNicCopy,
+        nannyNic,
+      };
+      fetch("http://localhost:8080/api/v1/parent/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(parent),
+      }).then(() => {
+        // eslint-disable-next-line no-console
+        console.log("New Parent is added!");
+      });
+    },
+  );
   return (
     <>
       <Navigationbarcustomer />
       <div className="p-24">
-        <form>
+        <form onSubmit={onSubmit}>
           <h1> Parent Information </h1>
           <div className="grid gap-6 mb-6 md:grid-cols-2 bg-blue-200 p-10">
             <div>
@@ -20,12 +71,19 @@ function parentInfomation() {
                 Full name
               </label>
               <input
+                {...register("parentFullName", {
+                  required: true,
+                })}
                 type="text"
                 id="parentFullName"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Semini Pathirana"
                 required
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentFullName &&
+                  "Invalid! Mparent Name Cannot be Empty."}
+              </p>
             </div>
             <div>
               <label
@@ -35,6 +93,9 @@ function parentInfomation() {
                 Relationship to Baby
               </label>
               <input
+                {...register("parentRelationshipToBaby", {
+                  required: true,
+                })}
                 type="text"
                 id="parentRelationshipToBaby"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -50,6 +111,9 @@ function parentInfomation() {
                 Address
               </label>
               <input
+                {...register("parentAddress", {
+                  required: true,
+                })}
                 type="text"
                 id="parentAddress"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -65,6 +129,9 @@ function parentInfomation() {
                 Mobile Number
               </label>
               <input
+                {...register("parentPhoneMoile", {
+                  required: true,
+                })}
                 type="tel"
                 id="parentPhoneMoile"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -80,7 +147,10 @@ function parentInfomation() {
                 NIC
               </label>
               <input
-                type="url"
+                {...register("parentNic", {
+                  required: true,
+                })}
+                type="text"
                 id="parentNic"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="997320395v"
@@ -95,7 +165,10 @@ function parentInfomation() {
                 Your Baby Age
               </label>
               <input
-                type="number"
+                {...register("parentBabyAge", {
+                  required: true,
+                })}
+                type="text"
                 id="parentBabyAge"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="4"
@@ -111,6 +184,9 @@ function parentInfomation() {
               NIC Copy
             </label>
             <input
+              {...register("parentNicCopy", {
+                required: true,
+              })}
               type="File"
               id="email"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -118,7 +194,24 @@ function parentInfomation() {
               required
             />
           </div>
-
+          <div>
+            <label
+              htmlFor="nannyNic"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              NIC
+            </label>
+            <input
+              {...register("nannyNic", {
+                required: true,
+              })}
+              type="text"
+              id="nannyNic"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="997320395v"
+              required
+            />
+          </div>
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"

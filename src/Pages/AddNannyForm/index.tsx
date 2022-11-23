@@ -1,3 +1,6 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-console */
 /* eslint-disable max-len */
@@ -17,15 +20,19 @@ interface NannyFormData {
   nannyWeight: number;
   nannyHeight: number;
   nannyLeavePreferences: String;
-  nannyLanguages: String;
+  nannyLanguage1: String;
+  nannyLanguage2: String;
+  nannyLanguage3: String;
   nannyWorkingHours: String;
   nannyQualification: String;
   nannyQualificationFile: String;
   nannyImage: String;
   nannyVegetaian: String;
   nannyPetLover: String;
-  availability: "Yes";
+  availability: String;
   nannyDifferentlyAbledCare: String;
+  nannyEthnicity: String;
+  nannyPreparingChildMeal: String;
   agentCompanyName: String;
 }
 
@@ -47,7 +54,10 @@ function addNannyForm() {
       nannyWeight,
       nannyHeight,
       nannyLeavePreferences,
-      nannyLanguages,
+      nannyLanguage1,
+      nannyLanguage2,
+      nannyLanguage3,
+      nannyEthnicity,
       nannyWorkingHours,
       nannyQualification,
       nannyQualificationFile,
@@ -56,6 +66,7 @@ function addNannyForm() {
       nannyPetLover,
       availability,
       nannyDifferentlyAbledCare,
+      nannyPreparingChildMeal,
       agentCompanyName,
     }) => {
       const nanny = {
@@ -67,7 +78,10 @@ function addNannyForm() {
         nannyWeight,
         nannyHeight,
         nannyLeavePreferences,
-        nannyLanguages,
+        nannyLanguage1,
+        nannyLanguage2,
+        nannyLanguage3,
+        nannyEthnicity,
         nannyWorkingHours,
         nannyQualification,
         nannyQualificationFile,
@@ -76,6 +90,7 @@ function addNannyForm() {
         nannyPetLover,
         availability,
         nannyDifferentlyAbledCare,
+        nannyPreparingChildMeal,
         agentCompanyName,
       };
       fetch("http://localhost:8080/api/v1/nanny/save", {
@@ -99,6 +114,7 @@ function addNannyForm() {
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
+                  {...register("nannyPreparingChildMeal", {})}
                   id="nannyPreparingChildMeal"
                   type="checkbox"
                   value="Preparing child Meal"
@@ -115,9 +131,7 @@ function addNannyForm() {
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
-                  {...register("nannyPetLover", {
-                    required: true,
-                  })}
+                  {...register("nannyPetLover", {})}
                   id="nannyPetLover"
                   type="checkbox"
                   value="Pet Lover"
@@ -134,9 +148,7 @@ function addNannyForm() {
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
-                  {...register("nannyDifferentlyAbledCare", {
-                    required: true,
-                  })}
+                  {...register("nannyDifferentlyAbledCare", {})}
                   id="nannyDifferentlyAbledCare"
                   type="checkbox"
                   value="Specialized in differently Abled child care"
@@ -153,9 +165,7 @@ function addNannyForm() {
             <li className="w-full dark:border-gray-600">
               <div className="flex items-center pl-3">
                 <input
-                  {...register("nannyVegetaian", {
-                    required: true,
-                  })}
+                  {...register("nannyVegetaian", {})}
                   id="nannyVegetaian"
                   type="checkbox"
                   value="Vegitarian"
@@ -166,6 +176,59 @@ function addNannyForm() {
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
                   Vegetarian
+                </label>
+              </div>
+            </li>
+          </ul>
+          <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div className="flex items-center pl-3">
+                <input
+                  {...register("nannyLanguage1", {})}
+                  id="nannyLanguage1"
+                  type="checkbox"
+                  value="Sinhala"
+                  className="w-4 h-4 text-red-900 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:red-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="nannyLanguage1"
+                  className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Sinhala
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div className="flex items-center pl-3">
+                <input
+                  {...register("nannyLanguage2", {})}
+                  id="nannyLanguage2"
+                  type="checkbox"
+                  value="English"
+                  className="w-4 h-4 text-red-900 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:red-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="nannyLanguage2"
+                  className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  English
+                </label>
+              </div>
+            </li>
+            <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+              <div className="flex items-center pl-3">
+                <input
+                  {...register("nannyLanguage3", {})}
+                  id="nannyLanguage3"
+                  type="checkbox"
+                  value="Tamil"
+                  className="w-4 h-4 text-red-900 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:red-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                />
+                <label
+                  htmlFor="nannyLanguage3"
+                  className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Sinhala
                 </label>
               </div>
             </li>
@@ -239,15 +302,43 @@ function addNannyForm() {
               >
                 Religion
               </label>
-              <input
+              <select
                 {...register("nannyReligion", {
                   required: true,
                 })}
-                type="text"
                 id="nannyReligion"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Buddhism"
-              />
+              >
+                <option value="Buddhism"> Buddhism </option>
+                <option value="Christian"> Christian </option>
+                <option value="Catholic"> Catholic </option>
+                <option value="Islam"> Islam </option>
+                <option value="Hindu"> Hindu </option>
+              </select>
+              <p className="text-red-600 text-xs">
+                {errors.nannyReligion && "Invalid! Religion Cannot Be empty."}
+              </p>
+            </div>
+            <div>
+              <label
+                htmlFor="nannyEthnicity"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Ethnicity
+              </label>
+              <select
+                {...register("nannyEthnicity", {
+                  required: true,
+                })}
+                id="nannyEthnicity"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="Sinhala"> Sinhala </option>
+                <option value="Tamil"> Tamil </option>
+                <option value="Burgher"> Burgher </option>
+                <option value="Muslim"> Muslim </option>
+                <option value="Malays"> Malays </option>
+              </select>
               <p className="text-red-600 text-xs">
                 {errors.nannyReligion && "Invalid! Religion Cannot Be empty."}
               </p>
@@ -259,15 +350,13 @@ function addNannyForm() {
               >
                 Nationality
               </label>
-              <input
-                {...register("nannyNationality", {
-                  required: true,
-                })}
-                type="text"
+              <select
                 id="nannyNationality"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Sri Lankan"
-              />
+              >
+                <option value="Sri Lankan"> Sri Lankan </option>
+                <option value="Non Sri Lankan"> Non Sri Lankan </option>
+              </select>
               <p className="text-red-600 text-xs">
                 {errors.nannyNationality &&
                   "Invalid! Nationality Cannot Be empty."}
@@ -321,15 +410,22 @@ function addNannyForm() {
               >
                 Working Hours
               </label>
-              <input
-                {...register("nannyWorkingHours", {
-                  required: true,
-                })}
-                type="text"
+              <select
                 id="nannyWorkingHours"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Weekdays 6AM to 8PM "
-              />
+              >
+                <option value="Weekdays 8AM - 2PM"> Weekdays 8AM - 2PM </option>
+                <option value="Full Time"> Full Time </option>
+                <option value="Weekdays 6AM - 6PM"> Weekdays 6AM - 6PM </option>
+                <option value="Weekdays+Saturday 6AM - 6PM">
+                  {" "}
+                  Weekdays+Saturday 6AM - 6PM{" "}
+                </option>
+                <option value="Weekdays+Saturday+Sunday 6AM - 6PMs">
+                  {" "}
+                  Weekdays+Saturday+Sunday 6AM - 6PM{" "}
+                </option>
+              </select>
               <p className="text-red-600 text-xs">
                 {errors.nannyWorkingHours &&
                   "Invalid! Working Hours Cannot Be empty."}
@@ -342,41 +438,33 @@ function addNannyForm() {
               >
                 Leave Preferences
               </label>
-              <input
-                {...register("nannyLeavePreferences", {
-                  required: true,
-                })}
-                type="text"
+              <select
                 id="nannyLeavePreferences"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="1 Day per Month"
-              />
+              >
+                <option value="1 Day Per Month"> 1 Day Per Month </option>
+                <option value="1 1/2 Days Per Month">
+                  {" "}
+                  1 1/2 Days Per Month{" "}
+                </option>
+                <option value="2 Days Per Month"> 2 Days Per Month </option>
+                <option value="2 1/2 Days Per Month">
+                  {" "}
+                  2 1/2 Day Per Month{" "}
+                </option>
+                <option value="3 Day Per Month"> 3 Days Per Month </option>
+                <option value="3 1/2 Day Per Month">
+                  {" "}
+                  3 1/2 Days Per Month{" "}
+                </option>
+              </select>
               <p className="text-red-600 text-xs">
                 {errors.nannyLeavePreferences &&
                   "Invalid! Leave Preferences Cannot Be empty."}
               </p>
             </div>
           </div>
-          <div>
-            <label
-              htmlFor="nannyLanguages"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Languages
-            </label>
-            <input
-              {...register("nannyLanguages", {
-                required: true,
-              })}
-              type="text"
-              id="nannyLanguages"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Sinhala, English"
-            />
-            <p className="text-red-600 text-xs">
-              {errors.nannyLanguages && "Invalid! Languages Cannot Be empty."}
-            </p>
-          </div>
+
           <div className="mb-6">
             <label
               htmlFor="nannyQualification"

@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Nanny from "./Pages/Nanny";
 import Home from "./Pages/Home";
 import SignIn from "./Pages/Signin";
-import DetailedNanny from "./Pages/DetailedNannyView";
 import SidebarAdmin from "./Pages/SidebarAdmin";
 import AddNanny from "./Pages/AddNannyForm";
 import SignInAgent from "./Pages/SignInAgent";
@@ -11,6 +10,7 @@ import ParentInfo from "./Pages/ParentInformation";
 import RegisterCustomer from "./Pages/RegisterCustomer";
 import NannyTableAgent from "./Pages/NannyTableAgent";
 import AddAgentForm from "./Pages/AddAgentForm";
+import DetailedNanny from "./Pages/DetailedNannyView";
 
 function App() {
   return (

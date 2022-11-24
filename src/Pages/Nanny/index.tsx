@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import NannyCard from "../../Components/NannyCard";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 // import { nannyData } from "../../Data/nannyData";
@@ -9,6 +10,7 @@ import image from "../../Assets/imageNanny005.jpg";
 import NannyService from "../../api/services/NannyService";
 
 function Nanny() {
+  const navigate = useNavigate();
   const [nannyData, setNannyData] = useState<any>([]);
 
   useEffect(() => {
@@ -38,9 +40,17 @@ function Nanny() {
                   <NannyCard
                     key={nanny.id}
                     name={nanny.nannyFullName}
+                    agent={nanny.agent.agentCompanyName}
                     experience={nanny.nannyQualification}
                     age={nanny.nannyAge}
+                    firstdistrict={nanny.nannyPrefferedDistrict1}
+                    secondDistrict={nanny.nannyPrefferedDistrict2}
                     image={image}
+                    onNavigate={() =>
+                      navigate(`/detailedNanny`, {
+                        state: { nannyNic: nanny.nannyNic },
+                      })
+                    }
                   />
                 </div>
               );

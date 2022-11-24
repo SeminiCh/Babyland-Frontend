@@ -1,10 +1,31 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/alt-text */
-import React from "react";
+
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import NannyService from "../../api/services/NannyService";
 import NannyImg from "../../Assets/imageNanny005.jpg";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
-function detailedNanny() {
+type NannyInfoState = {
+  nannyNic: string;
+};
+
+function DetailedNanny() {
+  const navigate = useNavigate();
+  const nannyDetails = useLocation();
+  const { nannyNic } = nannyDetails.state as NannyInfoState;
+  const [nannyData, setNannyData] = useState<any>([]);
+
+  useEffect(() => {
+    async function fetchNannyData() {
+      const response = await NannyService.getNannyByNic(nannyNic);
+      if (response) {
+        setNannyData(response?.data);
+      }
+    }
+    fetchNannyData();
+  });
   return (
     <>
       <Navigationbarcustomer />
@@ -20,15 +41,20 @@ function detailedNanny() {
                 alt=""
               />
               <div className="pt-5">
-                <p className="text-2xl"> Ramya Perera </p>
-                <p> Sunchine Caregivers pvt ltd </p>
+                <p className="text-2xl"> {nannyData.nannyFullName} </p>
+
                 <div className="flex justify-between items-center">
-                  <a
-                    href="parentInformation"
+                  <button
+                    type="button"
                     className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                    onClick={() =>
+                      navigate("/parentInformation", {
+                        state: { nannyNic },
+                      })
+                    }
                   >
                     Hire Her!
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -37,20 +63,47 @@ function detailedNanny() {
               <div className="bg-slate-200 p-5 rounded-md">
                 <p>
                   {" "}
-                  Age : <span> 36 years </span>
+                  Age : <span> {nannyData.nannyAge} Years </span>
                 </p>
                 <p>
                   {" "}
-                  Nationality : <span> Sri Lankan </span>
+                  Religion : <span> {nannyData.nannyReligion} </span>
                 </p>
                 <p>
                   {" "}
-                  Religion : <span> Christian </span>
+                  Ethnicity : <span> {nannyData.nannyEthnicity}</span>
                 </p>
                 <p>
                   {" "}
-                  Height/ Weight : <span> 169 cm / 65 kg </span>
+                  Nationality : <span> {nannyData.nannyNationality} </span>
                 </p>
+                <p>
+                  {" "}
+                  Appearence :{" "}
+                  <span>
+                    {" "}
+                    {nannyData.nannyHeight} cm , {nannyData.nannyWeight} kg{" "}
+                  </span>
+                </p>
+                <p>
+                  {" "}
+                  Leave Preferences :{" "}
+                  <span> {nannyData.nannyLeavePreferences}</span>
+                </p>
+                <p>
+                  {" "}
+                  Languages :{" "}
+                  <span>
+                    {" "}
+                    {nannyData.nannyLanguage1} , {nannyData.nannyLanguage2} ,{" "}
+                    {nannyData.nannyLanguage3}
+                  </span>
+                </p>
+                <p>
+                  {" "}
+                  Working Hours : <span> {nannyData.nannyWorkingHours}</span>
+                </p>
+
                 <p>
                   {" "}
                   Age : <span> 36 years </span>
@@ -75,4 +128,4 @@ function detailedNanny() {
   );
 }
 
-export default detailedNanny;
+export default DetailedNanny;

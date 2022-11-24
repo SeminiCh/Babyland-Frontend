@@ -49,12 +49,23 @@ function agentTable() {
       </div>
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
+          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <th scope="col">Company Name</th>
+            <th scope="col">Authorized Person</th>
             <th scope="col" className="py-3 px-6">
-              Company Name
+              Designation
             </th>
             <th scope="col" className="py-3 px-6">
-              File
+              Authorized Person Nic
+            </th>
+            <th scope="col" className="py-3 px-6">
+              Company Phone Number
+            </th>
+            <th scope="col" className="py-3 px-6">
+              Personal Phone Number
+            </th>
+            <th scope="col" className="py-3 px-6">
+              Email
             </th>
             <th scope="col" className="py-3 px-6">
               Action
@@ -69,8 +80,16 @@ function agentTable() {
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
                   key={agent.id}
                 >
-                  <td className="py-4 px-6"> {agent.agentCompanyName} </td>
-                  <td className="py-4 px-6"> No Pdf </td>
+                  <td className="py-4"> {agent.agentCompanyName} </td>
+                  <td className="py-4 "> {agent.agentEmployeeName} </td>
+                  <td className="py-4 px-6">
+                    {" "}
+                    {agent.agentPersonDesignation}{" "}
+                  </td>
+                  <td className="py-4 px-6"> {agent.agentPersonNic} </td>
+                  <td className="py-4 px-6"> {agent.agentCompanyPhone} </td>
+                  <td className="py-4 px-6"> {agent.agentPersonPhone} </td>
+                  <td className="py-4 px-6"> {agent.agentPersonEmail} </td>
                   <a
                     href="/"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"

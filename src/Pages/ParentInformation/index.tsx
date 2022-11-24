@@ -2,8 +2,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
+import NannyService from "../../api/services/NannyService";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
@@ -18,7 +20,24 @@ interface ParentFormData {
   nannyNic: String;
 }
 
+type NannyInfoState = {
+  nannyNIC: string;
+};
+
 function parentInfomation() {
+  const nannyDetails = useLocation();
+  const { nannyNIC } = nannyDetails.state as NannyInfoState;
+  const [nannyData, setNannyData] = useState<any>([]);
+
+  useEffect(() => {
+    async function fetchNannyData() {
+      const response = await NannyService.getNannyByNic(nannyNIC);
+      if (response) {
+        setNannyData(response?.data);
+      }
+    }
+    fetchNannyData();
+  });
   const {
     register,
     handleSubmit,
@@ -211,6 +230,7 @@ function parentInfomation() {
               required
             />
           </div>
+          <p> {nannyData.nannyNic}</p>
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"

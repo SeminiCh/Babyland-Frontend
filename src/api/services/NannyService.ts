@@ -10,6 +10,10 @@ class NannyService {
   async getAllNannies() {
     return await apiService.apiPOST("/nanny", {});
   }
+
+  async getNannyByNic(nannyNic: string) {
+    return await apiService.apiGET(`/nanny/${nannyNic}`);
+  }
 }
 
 export default new NannyService();

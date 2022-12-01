@@ -1,9 +1,11 @@
+/* eslint-disable no-lone-blocks */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 
 interface INannyCard {
   name: String;
   experience: String;
+  photo: any;
   age: String;
   agent: String;
   image: string;
@@ -15,10 +17,12 @@ interface INannyCard {
 function NannyCard({
   name,
   agent,
+  photo,
   experience,
   firstdistrict,
   secondDistrict,
   age,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   image,
   onNavigate,
 }: INannyCard) {
@@ -28,7 +32,7 @@ function NannyCard({
         <a href="ps">
           <img
             className="w-full h-72 p-8 rounded-t-lg"
-            src={image}
+            src={photo}
             alt="nanny image"
           />
         </a>
@@ -38,7 +42,7 @@ function NannyCard({
           </h5>
           <h6> {agent} </h6>
           <p>{experience} </p>
-          <p>{age} </p>
+          <p>{age} Years </p>
           <p>
             {firstdistrict} , {secondDistrict}
           </p>

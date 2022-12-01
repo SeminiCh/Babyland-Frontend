@@ -4,7 +4,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
-import NannyImg from "../../Assets/imageNanny005.jpg";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
 type NannyInfoState = {
@@ -29,20 +28,37 @@ function DetailedNanny() {
   return (
     <>
       <Navigationbarcustomer />
-      <main className="flex items-center justify-center h-screen">
+      <main className="flex items-center justify-center h-screen pt-20">
         {" "}
         <div className="w-fit h-fit m-10 bg-blue-50 p-5">
           <div className="flex flex-row">
             <div className="flex flex-col justify-between p-4 leading-normal">
               {" "}
               <img
-                className="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
-                src={NannyImg}
+                className="object-cover w-72 h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                src={nannyData.nannyImg}
                 alt=""
               />
               <div className="pt-5">
                 <p className="text-2xl"> {nannyData.nannyFullName} </p>
-
+                <div className="bg-slate-200 p-2 my-1 rounded-md w-56">
+                  <h3 className="text-lg text-red-700 border-l-2">
+                    {" "}
+                    Special Notes{" "}
+                  </h3>
+                  <p className=" font-normal text-gray-700 dark:text-gray-400">
+                    <span> {nannyData.nannyDifferentlyAbledCare} </span>
+                  </p>
+                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                    <span> {nannyData.nannyPetLover} </span>
+                  </p>
+                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                    <span> {nannyData.nannyVegetaian} </span>
+                  </p>
+                  <p className="font-normal text-gray-700 dark:text-gray-400">
+                    <span> {nannyData.nannyPreparingChildMeal} </span>
+                  </p>
+                </div>
                 <div className="flex justify-between items-center">
                   <button
                     type="button"
@@ -71,7 +87,7 @@ function DetailedNanny() {
                 </p>
                 <p>
                   {" "}
-                  Ethnicity : <span> {nannyData.nannyEthnicity}</span>
+                  Ethnicity : <span> {nannyData.nannyEthniity}</span>
                 </p>
                 <p>
                   {" "}
@@ -103,12 +119,13 @@ function DetailedNanny() {
                   {" "}
                   Working Hours : <span> {nannyData.nannyWorkingHours}</span>
                 </p>
-
-                <p>
-                  {" "}
-                  Age : <span> 36 years </span>
-                </p>
+                <img
+                  className="object-cover w-72 h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
+                  src={nannyData.nannyQulFile}
+                  alt=""
+                />
               </div>
+
               <div className="bg-slate-200 p-5 rounded-md ">
                 <h3> Reviews </h3>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">

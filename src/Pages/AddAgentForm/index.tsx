@@ -1,27 +1,70 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import { useForm } from "react-hook-form";
-import SidebarAdmin from "../SidebarAdmin";
-
 import AgentTable from "../AgentTable";
+import SidebarAdmin from "../SidebarAdmin";
 
 interface AgentFormData {
   agentCompanyName: String;
   agentPassword: String;
-  agentLicenseFile: String;
   agentEmployeeName: String;
   agentCompanyPhone: String;
   agentPersonPhone: String;
   agentPersonEmail: String;
   agentPersonDesignation: String;
   agentPersonNic: String;
-  agentPersonImage: String;
+  agentOfficerImg: String;
+  agentLiFile: String;
+  agentCompanyAddress: String;
 }
 
 function AddAgentForm() {
+  let base64code: string | number | readonly string[] | undefined;
+  let base64codeFile: string | number | readonly string[] | undefined;
+
+  const onLoad = (fileString: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    base64code = fileString;
+  };
+
+  const getbase64 = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  };
+
+  const onChange = (e: any) => {
+    const { files } = e.target;
+    const file = files[0];
+    getbase64(file);
+    console.log(base64code);
+  };
+
+  // for certification
+  const onLoadFile = (fileString: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    base64codeFile = fileString;
+  };
+  const getbase64File = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoadFile(reader.result);
+    };
+  };
+  const onChangeFile = (e: any) => {
+    const { files } = e.target;
+    const file = files[0];
+    getbase64File(file);
+    console.log(base64codeFile);
+  };
+
   const {
     register,
     handleSubmit,
@@ -32,26 +75,28 @@ function AddAgentForm() {
     ({
       agentCompanyName,
       agentPassword,
-      agentLicenseFile,
+      agentLiFile,
       agentEmployeeName,
       agentCompanyPhone,
       agentPersonPhone,
       agentPersonEmail,
       agentPersonDesignation,
       agentPersonNic,
-      agentPersonImage,
+      agentCompanyAddress,
+      agentOfficerImg,
     }) => {
       const agent = {
         agentCompanyName,
         agentPassword,
-        agentLicenseFile,
+        agentLiFile: base64codeFile,
         agentEmployeeName,
         agentCompanyPhone,
         agentPersonPhone,
         agentPersonEmail,
         agentPersonDesignation,
         agentPersonNic,
-        agentPersonImage,
+        agentOfficerImg: base64code,
+        agentCompanyAddress,
       };
 
       fetch("http://localhost:8080/api/v1/agent/save", {
@@ -66,9 +111,7 @@ function AddAgentForm() {
   return (
     <>
       <SidebarAdmin />
-
       <AgentTable />
-
       <div className="p-24 h-screen pt-24">
         <form onSubmit={onSubmit}>
           <h1> Agent Information </h1>
@@ -93,6 +136,27 @@ function AddAgentForm() {
               <p className="text-red-600 text-xs">
                 {errors.agentCompanyName &&
                   "Invalid! Company Name should not be empty"}
+              </p>
+            </div>
+            <div>
+              <label
+                htmlFor="agentCompanyAddress"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Company Address
+              </label>
+              <input
+                {...register("agentCompanyAddress", {
+                  required: true,
+                })}
+                type="text"
+                id="agentCompanyAddress"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+              <p className="text-red-600 text-xs">
+                {errors.agentCompanyAddress &&
+                  "Invalid! Company Address should not be empty"}
               </p>
             </div>
             <div>
@@ -131,12 +195,12 @@ function AddAgentForm() {
                 type="text"
                 id="agentEmployeeName"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
+                placeholder="ABC Perera"
                 required
               />
               <p className="text-red-600 text-xs">
                 {errors.agentEmployeeName &&
-                  "Invalid! Company Name should not be empty"}
+                  "Invalid! Authorized officer Name should not be empty"}
               </p>
             </div>
             <div>
@@ -153,12 +217,11 @@ function AddAgentForm() {
                 type="text"
                 id="agentPersonNic"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
                 required
               />
               <p className="text-red-600 text-xs">
                 {errors.agentPersonNic &&
-                  "Invalid! Company Name should not be empty"}
+                  "Invalid! Authorized officer Nic should not be empty"}
               </p>
             </div>
             <div>
@@ -175,7 +238,6 @@ function AddAgentForm() {
                 type="text"
                 id="agentCompanyPhone"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
                 required
               />
               <p className="text-red-600 text-xs">
@@ -193,16 +255,16 @@ function AddAgentForm() {
               <input
                 {...register("agentPersonPhone", {
                   required: true,
+                  minLength: 10,
                 })}
                 type="text"
                 id="agentPersonPhone"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
                 required
               />
               <p className="text-red-600 text-xs">
                 {errors.agentPersonPhone &&
-                  "Invalid! Company Name should not be empty"}
+                  "Invalid! Authorized officer Phone should not be empty"}
               </p>
             </div>
             <div>
@@ -219,12 +281,11 @@ function AddAgentForm() {
                 type="text"
                 id="agentPersonEmail"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
                 required
               />
               <p className="text-red-600 text-xs">
                 {errors.agentPersonEmail &&
-                  "Invalid! Company Name should not be empty"}
+                  "Invalid! Email should not be empty"}
               </p>
             </div>
             <div>
@@ -241,52 +302,44 @@ function AddAgentForm() {
                 type="text"
                 id="agentPersonDesignation"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
                 required
               />
               <p className="text-red-600 text-xs">
                 {errors.agentPersonDesignation &&
-                  "Invalid! Company Name should not be empty"}
+                  "Invalid! Designation should not be empty"}
               </p>
             </div>
             <div>
               <label
-                htmlFor="agentPersonImage"
+                htmlFor="agentOfficerImg"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Person Image
               </label>
               <input
-                {...register("agentPersonImage", {
-                  required: true,
-                })}
-                type="text"
-                id="agentPersonImage"
+                type="file"
+                onChange={onChange}
+                id="agentOfficerImg"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Reeta Caregivers Suppliers"
-                required
               />
-              <p className="text-red-600 text-xs">
-                {errors.agentPersonImage &&
-                  "Invalid! Company Name should not be empty"}
-              </p>
             </div>
             <div>
               <label
-                htmlFor="agentLicenseFile"
+                htmlFor="agentLiFile"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Enter the Certificate
               </label>
               <input
-                {...register("agentLicenseFile", {
-                  required: true,
-                })}
                 type="file"
-                id="agentLicenseFile"
+                onChange={onChangeFile}
+                id="agentLiFile"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.agentLiFile &&
+                  "Please upload file! This Cannot Be empty."}
+              </p>
             </div>
 
             <button

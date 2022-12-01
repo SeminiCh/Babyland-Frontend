@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/jsx-no-undef */
@@ -5,7 +7,6 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from "react";
 import { useForm } from "react-hook-form";
 
 import Footer from "../../Components/Footer";
@@ -25,8 +26,8 @@ interface NannyFormData {
   nannyLanguage3: String;
   nannyWorkingHours: String;
   nannyQualification: String;
-  nannyQualificationFile: String;
-  nannyImage: String;
+  nannyQulFile: String;
+  nannyImg: String;
   nannyVegetaian: String;
   nannyPetLover: String;
   availability: String;
@@ -34,9 +35,52 @@ interface NannyFormData {
   nannyEthnicity: String;
   nannyPreparingChildMeal: String;
   agentCompanyName: String;
+  nannyPrefferedDistrict1: String;
+  nannyPrefferedDistrict2: String;
 }
 
 function addNannyForm() {
+  let base64codeNannyImage: string | number | readonly string[] | undefined;
+  let base64codeFileNannyCerti: string | number | readonly string[] | undefined;
+  const onLoadNI = (fileString: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    base64codeNannyImage = fileString;
+  };
+
+  const getbase64NI = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoadNI(reader.result);
+    };
+  };
+
+  const onChangeNI = (e: any) => {
+    const { files } = e.target;
+    const file = files[0];
+    getbase64NI(file);
+    console.log(base64codeNannyImage);
+  };
+
+  // for certification
+  const onLoadFileNC = (fileString: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    base64codeFileNannyCerti = fileString;
+  };
+  const getbase64FileNC = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoadFileNC(reader.result);
+    };
+  };
+  const onChangeFileNC = (e: any) => {
+    const { files } = e.target;
+    const file = files[0];
+    getbase64FileNC(file);
+    console.log(base64codeFileNannyCerti);
+  };
+
   const {
     register,
     handleSubmit,
@@ -60,14 +104,19 @@ function addNannyForm() {
       nannyEthnicity,
       nannyWorkingHours,
       nannyQualification,
-      nannyQualificationFile,
-      nannyImage,
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      nannyQulFile,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      nannyImg,
       nannyVegetaian,
       nannyPetLover,
       availability,
       nannyDifferentlyAbledCare,
       nannyPreparingChildMeal,
       agentCompanyName,
+      nannyPrefferedDistrict1,
+      nannyPrefferedDistrict2,
     }) => {
       const nanny = {
         nannyFullName,
@@ -84,14 +133,16 @@ function addNannyForm() {
         nannyEthnicity,
         nannyWorkingHours,
         nannyQualification,
-        nannyQualificationFile,
-        nannyImage,
+        nannyQulFile: base64codeFileNannyCerti,
+        nannyImg: base64codeNannyImage,
         nannyVegetaian,
         nannyPetLover,
         availability,
         nannyDifferentlyAbledCare,
         nannyPreparingChildMeal,
         agentCompanyName,
+        nannyPrefferedDistrict1,
+        nannyPrefferedDistrict2,
       };
       fetch("http://localhost:8080/api/v1/nanny/save", {
         method: "POST",
@@ -110,6 +161,27 @@ function addNannyForm() {
           <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
             Please fill this
           </h3>
+          <div>
+            <label
+              htmlFor="availability"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Availability
+            </label>
+            <select
+              {...register("availability", {
+                required: true,
+              })}
+              id="availability"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option value="Yes"> Yes, She is available </option>
+              <option value="No"> No, She is not available </option>
+            </select>
+            <p className="text-red-600 text-xs">
+              {errors.availability && "Invalid! Religion Cannot Be empty."}
+            </p>
+          </div>
           <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
@@ -228,7 +300,7 @@ function addNannyForm() {
                   htmlFor="nannyLanguage3"
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Sinhala
+                  Tamil
                 </label>
               </div>
             </li>
@@ -365,6 +437,98 @@ function addNannyForm() {
                   "Invalid! Nationality Cannot Be empty."}
               </p>
             </div>
+            <div>
+              <label
+                htmlFor="nannyPrefferedDistrict1"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                1st Location Prefference
+              </label>
+              <select
+                {...register("nannyPrefferedDistrict1", {
+                  required: true,
+                })}
+                id="nannyPrefferedDistrict1"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="Colombo"> Colombo </option>
+                <option value="Gampaha"> Gampaha </option>
+                <option value="Kaluthara"> Kaluthara </option>
+                <option value="Galle"> Galle </option>
+                <option value="Matara"> Matara </option>
+                <option value="Hambanthota"> Hambanthota </option>
+                <option value="Kurunegala"> Kurunegala </option>
+                <option value="Puttalam"> Puttalam </option>
+                <option value="Kandy"> Kandy </option>
+                <option value="Matale"> Matale </option>
+                <option value="NuwaraEliya"> NuwarEliya </option>
+                <option value="Ratnapura"> Ratnapura </option>
+                <option value="Kegalle"> Kegalle </option>
+                <option value="Anuradhapura"> Anurdhapura </option>
+                <option value="Polonnaruwa"> Polonnaruwa </option>
+                <option value="Ampara"> Ampara </option>
+                <option value="Batticoala"> Batticoala </option>
+                <option value="Trincomalee"> Trincomalee </option>
+                <option value="Badulla"> Badulla </option>
+                <option value="Monaragala"> Monaragala </option>
+                <option value="Jaffna"> Jaffna </option>
+                <option value="Vaunia"> Vaunia </option>
+                <option value="Mannar"> Mannar </option>
+                <option value="Kilinochchi"> Kilinochchi </option>
+                <option value="Mullaithiv"> Mullaithiv </option>
+                <option value="Any"> Any District </option>
+              </select>
+              <p className="text-red-600 text-xs">
+                {errors.nannyPrefferedDistrict1 &&
+                  "Invalid! Religion Cannot Be empty."}
+              </p>
+            </div>
+            <div>
+              <label
+                htmlFor="nannyPrefferedDistrict2"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                2nd Location Prefference
+              </label>
+              <select
+                {...register("nannyPrefferedDistrict2", {
+                  required: true,
+                })}
+                id="nannyPrefferedDistrict2"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              >
+                <option value="Colombo"> Colombo </option>
+                <option value="Gampaha"> Gampaha </option>
+                <option value="Kaluthara"> Kaluthara </option>
+                <option value="Galle"> Galle </option>
+                <option value="Matara"> Matara </option>
+                <option value="Hambanthota"> Hambanthota </option>
+                <option value="Kurunegala"> Kurunegala </option>
+                <option value="Puttalam"> Puttalam </option>
+                <option value="Kandy"> Kandy </option>
+                <option value="Matale"> Matale </option>
+                <option value="NuwaraEliya"> NuwarEliya </option>
+                <option value="Ratnapura"> Ratnapura </option>
+                <option value="Kegalle"> Kegalle </option>
+                <option value="Anuradhapura"> Anurdhapura </option>
+                <option value="Polonnaruwa"> Polonnaruwa </option>
+                <option value="Ampara"> Ampara </option>
+                <option value="Batticoala"> Batticoala </option>
+                <option value="Trincomalee"> Trincomalee </option>
+                <option value="Badulla"> Badulla </option>
+                <option value="Monaragala"> Monaragala </option>
+                <option value="Jaffna"> Jaffna </option>
+                <option value="Vaunia"> Vaunia </option>
+                <option value="Mannar"> Mannar </option>
+                <option value="Kilinochchi"> Kilinochchi </option>
+                <option value="Mullaithiv"> Mullaithiv </option>
+                <option value="Any"> Any District </option>
+              </select>
+              <p className="text-red-600 text-xs">
+                {errors.nannyPrefferedDistrict2 &&
+                  "Invalid! Religion Cannot Be empty."}
+              </p>
+            </div>
             <div className="mb-6">
               <label
                 htmlFor="nannyWeight"
@@ -498,24 +662,17 @@ function addNannyForm() {
 
           <div className="mb-6">
             <label
-              htmlFor="nannyQualificationFile"
+              htmlFor="nannyQulFile"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Upload certifications here
             </label>
             <input
-              {...register("nannyQualificationFile", {
-                required: true,
-              })}
               type="file"
-              id="nannyQualificationFile"
+              onChange={onChangeFileNC}
+              id="nannyQulFile"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="•••••••••"
             />
-            <p className="text-red-600 text-xs">
-              {errors.nannyQualificationFile &&
-                "Please upload file! This Cannot Be empty."}
-            </p>
           </div>
           <div className="mb-6">
             <label
@@ -525,16 +682,13 @@ function addNannyForm() {
               Image
             </label>
             <input
-              {...register("nannyImage", {
-                required: true,
-              })}
               type="file"
-              id="nannyImage"
+              onChange={onChangeNI}
+              id="nannyImg"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="•••••••••"
             />
             <p className="text-red-600 text-xs">
-              {errors.nannyImage && "Please upload file! This Cannot Be empty."}
+              {errors.nannyImg && "Please upload file! This Cannot Be empty."}
             </p>
           </div>
           <div className="mb-6">

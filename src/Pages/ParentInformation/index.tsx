@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable max-len */
@@ -12,32 +14,79 @@ import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 interface ParentFormData {
   parentFullName: String;
   parentRelationshipToBaby: String;
+  parentOccupation: String;
+  parentOccupationFather: String;
   parentAddress: String;
+  parentCity: String;
   parentPhoneMoile: String;
   parentNic: String;
   parentBabyAge: String;
-  parentNicCopy: String;
+  parentBabbiesCount: String;
+  parentImg: String;
+  parentNCopy: String;
   nannyNic: String;
+  parentBabySpecialCare: String;
 }
 
 type NannyInfoState = {
-  nannyNIC: string;
+  nannyNic: string;
 };
 
 function parentInfomation() {
   const nannyDetails = useLocation();
-  const { nannyNIC } = nannyDetails.state as NannyInfoState;
+  const { nannyNic: NIC } = nannyDetails.state as NannyInfoState;
   const [nannyData, setNannyData] = useState<any>([]);
 
   useEffect(() => {
     async function fetchNannyData() {
-      const response = await NannyService.getNannyByNic(nannyNIC);
+      const response = await NannyService.getNannyByNic(NIC);
       if (response) {
         setNannyData(response?.data);
       }
     }
     fetchNannyData();
   });
+
+  let base64codeParentNic: string | number | readonly string[] | undefined;
+  let base64codeParentPhoto: string | number | readonly string[] | undefined;
+  const onLoadParentNic = (fileString: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    base64codeParentNic = fileString;
+  };
+
+  const getbase64ParentNic = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoadParentNic(reader.result);
+    };
+  };
+
+  const onChangeNicParent = (e: any) => {
+    const { files } = e.target;
+    const file = files[0];
+    getbase64ParentNic(file);
+    console.log(base64codeParentNic);
+  };
+
+  // for certification
+  const onLoadParentPhoto = (fileString: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    base64codeParentPhoto = fileString;
+  };
+  const getbase64FileNC = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoadParentPhoto(reader.result);
+    };
+  };
+  const onChangeParentPhoto = (e: any) => {
+    const { files } = e.target;
+    const file = files[0];
+    getbase64FileNC(file);
+    console.log(base64codeParentPhoto);
+  };
   const {
     register,
     handleSubmit,
@@ -49,21 +98,34 @@ function parentInfomation() {
       parentFullName,
       parentRelationshipToBaby,
       parentAddress,
+      parentOccupation,
+      parentOccupationFather,
+      parentCity,
+      parentBabbiesCount,
+      parentImg,
+      parentBabySpecialCare,
       parentPhoneMoile,
       parentNic,
       parentBabyAge,
-      parentNicCopy,
+      parentNCopy,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       nannyNic,
     }) => {
       const parent = {
         parentFullName,
         parentRelationshipToBaby,
         parentAddress,
+        parentOccupation,
+        parentOccupationFather,
+        parentCity,
+        parentBabbiesCount,
+        parentImg: base64codeParentPhoto,
+        parentBabySpecialCare,
         parentPhoneMoile,
         parentNic,
         parentBabyAge,
-        parentNicCopy,
-        nannyNic,
+        parentNCopy: base64codeParentNic,
+        nannyNic: nannyData.nannyNic,
       };
       fetch("http://localhost:8080/api/v1/parent/save", {
         method: "POST",
@@ -124,6 +186,39 @@ function parentInfomation() {
             </div>
             <div>
               <label
+                htmlFor="parentOccupation"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Occupation - Mother
+              </label>
+              <input
+                {...register("parentOccupation", {
+                  required: true,
+                })}
+                type="text"
+                id="parentOccupation"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="parentOccupationFather"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Occupation - Father
+              </label>
+              <input
+                {...register("parentOccupationFather", {
+                  required: true,
+                })}
+                type="text"
+                id="parentOccupationFather"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label
                 htmlFor="parentAddress"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
@@ -140,6 +235,24 @@ function parentInfomation() {
                 required
               />
             </div>
+            <div>
+              <label
+                htmlFor="parentCity"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Nearest City
+              </label>
+              <input
+                {...register("parentCity", {
+                  required: true,
+                })}
+                type="text"
+                id="parentCity"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+            </div>
+
             <div>
               <label
                 htmlFor="parentPhoneMoile"
@@ -178,10 +291,27 @@ function parentInfomation() {
             </div>
             <div>
               <label
+                htmlFor="parentBabbiesCount"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                How many babies?
+              </label>
+              <input
+                {...register("parentBabbiesCount", {
+                  required: true,
+                })}
+                type="text"
+                id="parentBabbiesCount"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+            </div>
+            <div>
+              <label
                 htmlFor="parentBabyAge"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Your Baby Age
+                Baby Details
               </label>
               <input
                 {...register("parentBabyAge", {
@@ -197,40 +327,50 @@ function parentInfomation() {
           </div>
           <div className="mb-6">
             <label
-              htmlFor="parentNicCopy"
+              htmlFor="parentNCopy"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               NIC Copy
             </label>
             <input
-              {...register("parentNicCopy", {
-                required: true,
-              })}
-              type="text"
-              id="parentNicCopy"
+              type="file"
+              id="parentNCopy"
+              onChange={onChangeNicParent}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
             />
           </div>
-          <div>
+          <div className="mb-6">
             <label
-              htmlFor="nannyNic"
+              htmlFor="parentImg"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
-              NIC
+              Parent Image
             </label>
             <input
-              {...register("nannyNic", {
-                required: true,
-              })}
-              type="text"
-              id="nannyNic"
+              type="file"
+              id="parentImg"
+              onChange={onChangeParentPhoto}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="997320395v"
               required
             />
           </div>
-          <p> {nannyData.nannyNic}</p>
+          <div className="mb-6">
+            <label
+              htmlFor="parentBabySpecialCare"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Is your Baby Differenty abled?
+            </label>
+            <input
+              {...register("parentBabySpecialCare", {
+                required: true,
+              })}
+              type="text"
+              id="parentBabySpecialCare"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"

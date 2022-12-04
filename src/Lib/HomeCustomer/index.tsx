@@ -23,15 +23,17 @@ function Home() {
         </div>
         <div className="max-w-[1240px] mx-auto text-white relative">
           <div className="px-4 py-12">
-            <h3 className="text-4xl font-bold py-6 text-center">
+            <h3 className="text-4xl font-bold pt-10 pb-5 text-center">
               {" "}
               <br />
-              BABYLAND.lk is Finding the you the right Nanny
+              BABYLAND.lk is Helping you in Finding the right Nanny
             </h3>
-            <p className="py-4 text-xl text-slate-300">
+            <p className="py-4 text-xl text-slate-300 text-center">
               {" "}
-              BABYLAND.lk is providing service to parent in urban and suburban
-              areas to finding trustworthy and realiable nannies.
+              BABYLAND.lk is Providing Service to all parent in Urban and
+              suburban areas to finding trustworthy and realiable nannies. Our
+              commitment is to provide quality nannies and caregivers to every
+              families in the Sri Lanka.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-black">
@@ -43,10 +45,11 @@ function Home() {
                 </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the standard dummy
-                  text ever since the 1500s, when an unknown printer took a
-                  galley of type and scrambled it to make a type specimen book.
+                  If you find yourself in need of a babysitter, the internet is
+                  a great place to start And in truth, it can be a great way to
+                  find a someone to care for your child if you know where to
+                  look, what questions to ask, and how to vet not just the
+                  sitters themselves, but also the sites offering the services.
                 </p>
               </div>
               <div className="bg-slate-100 pl-8 py-4">

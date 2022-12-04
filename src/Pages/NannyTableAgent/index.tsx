@@ -3,14 +3,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 import React from "react";
-import NavigationbarAgent from "../../Lib/NavigationBarAgent";
+// import NavigationbarAgent from "../../Lib/NavigationBarAgent";
 import Footer from "../../Components/Footer";
 import NannyImg1 from "../../Assets/imageNanny005.jpg";
+import SidebarAdmin from "../SidebarAdmin";
 
 function nannyTableAgent() {
   return (
     <>
-      <NavigationbarAgent />
+      <SidebarAdmin />
       <div className="overflow-x-auto relative shadow-md sm:rounded-lg p-24">
         <div className="flex justify-between items-center pb-4 bg-white dark:bg-gray-900">
           <label htmlFor="table-search" className="sr-only">

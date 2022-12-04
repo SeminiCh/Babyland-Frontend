@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/alt-text */
 
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
@@ -11,7 +12,6 @@ type NannyInfoState = {
 };
 
 function DetailedNanny() {
-  const navigate = useNavigate();
   const nannyDetails = useLocation();
   const { nannyNic } = nannyDetails.state as NannyInfoState;
   const [nannyData, setNannyData] = useState<any>([]);
@@ -37,7 +37,7 @@ function DetailedNanny() {
               <img
                 className="object-cover w-72 h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                 src={nannyData.nannyImg}
-                alt=""
+                alt="nanny"
               />
               <div className="pt-5">
                 <p className="text-2xl"> {nannyData.nannyFullName} </p>
@@ -63,13 +63,8 @@ function DetailedNanny() {
                   <button
                     type="button"
                     className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                    onClick={() =>
-                      navigate("/parentInformation", {
-                        state: { nannyNic: nannyData.nannyNic },
-                      })
-                    }
                   >
-                    Hire Her!
+                    Edit Nanny
                   </button>
                 </div>
               </div>

@@ -7,10 +7,12 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import AgentService from "../../api/services/AgentService";
 
 import Footer from "../../Components/Footer";
-import NavigationbarAgent from "../../Lib/NavigationBarAgent";
+import SidebarAdmin from "../SidebarAdmin";
 
 interface NannyFormData {
   nannyFullName: String;
@@ -40,6 +42,17 @@ interface NannyFormData {
 }
 
 function addNannyForm() {
+  const [agentData, setAgentData] = useState<any>([]);
+  useEffect(() => {
+    async function fetchAgentData() {
+      const response = await AgentService.getAllAgents();
+      if (response) {
+        setAgentData(response?.data);
+      }
+    }
+    fetchAgentData();
+  });
+
   let base64codeNannyImage: string | number | readonly string[] | undefined;
   let base64codeFileNannyCerti: string | number | readonly string[] | undefined;
   const onLoadNI = (fileString: any) => {
@@ -155,7 +168,7 @@ function addNannyForm() {
   );
   return (
     <>
-      <NavigationbarAgent />
+      <SidebarAdmin />
       <div className="p-24">
         <form onSubmit={onSubmit}>
           <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
@@ -698,15 +711,22 @@ function addNannyForm() {
             >
               Company Name
             </label>
-            <input
+            <select
               {...register("agentCompanyName", {
                 required: true,
               })}
-              type="text"
               id="agentCompanyName"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Sunflower Care Govers Providers Ltd."
-            />
+            >
+              {agentData.map((agent: any) => {
+                return (
+                  <option key={agent.id} value={agent.agentCompanyName}>
+                    {" "}
+                    {agent.agentCompanyName}
+                  </option>
+                );
+              })}
+            </select>
             <p className="text-red-600 text-xs">
               {errors.agentCompanyName &&
                 "Invalid! Company Name Cannot Be empty."}

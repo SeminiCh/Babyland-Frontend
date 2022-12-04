@@ -11,6 +11,9 @@ import RegisterCustomer from "./Pages/RegisterCustomer";
 import NannyTableAgent from "./Pages/NannyTableAgent";
 import AddAgentForm from "./Pages/AddAgentForm";
 import DetailedNanny from "./Pages/DetailedNannyView";
+import NannyTableAdmin from "./Pages/NannyTableAdmin";
+import DetailedNannyAdmin from "./Pages/DetailedNannyAdmin";
+import ParentTableAdmin from "./Pages/ParentTableAdmin";
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
         <Route path="/nannyTable" element={<NannyTableAgent />} />
+        <Route path="/nannyTableAdmin" element={<NannyTableAdmin />} />
+        <Route path="/detailedNannyAdmin" element={<DetailedNannyAdmin />} />
+        <Route path="/parenttableAdmin" element={<ParentTableAdmin />} />
       </Routes>
     </Router>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable max-len */
@@ -12,6 +13,8 @@ import SidebarAdmin from "../SidebarAdmin";
 function nannyTableAdmin() {
   const navigate = useNavigate();
   const [nannyData, setNannyData] = useState<any>([]);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     async function fetchNannyDataAdmin() {
@@ -49,9 +52,10 @@ function nannyTableAdmin() {
             </div>
             <input
               type="text"
-              id="table-search-users"
+              id="searchNanniesAdmin"
               className="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Search for users"
+              onChange={(e) => setQuery(e.target.value)}
             />
           </div>
         </div>
@@ -65,46 +69,58 @@ function nannyTableAdmin() {
         <table className="w-fit text-sm text-gray-500 dark:text-gray-400">
           <tbody>
             <div>
-              {nannyData.map((nanny: any) => {
-                return (
-                  <tr
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                    key={nanny.id}
-                  >
-                    <td className="p-4">
-                      <img
-                        className="w-15 h-10 rounded-full "
-                        src={nanny.nannyImg}
-                        alt="nanny image"
-                      />{" "}
-                    </td>
-                    <td className="p-4"> {nanny.nannyFullName} </td>
-                    <td className="p-4"> {nanny.nannyNic} </td>
-                    <td className="p-4 "> {nanny.nannyAge} years</td>
-                    <td className="p-4 "> {nanny.nannyPrefferedDistrict1} </td>
-                    <td className="p-4 "> {nanny.nannyPrefferedDistrict2} </td>
-                    <td className="p-4 "> {nanny.agent.agentCompanyName} </td>
-                    <td className="p-4"> {nanny.nannyEthniity}</td>
-                    <td className="p-4 "> {nanny.nannyReligion}</td>
-                    <td className="p-4 "> {nanny.nannyQualification}</td>
-                    <td className="p-4">
-                      {" "}
-                      <button
-                        type="button"
-                        className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                        onClick={() =>
-                          navigate("/detailedNannyAdmin", {
-                            state: { nannyNic: nanny.nannyNic },
-                          })
-                        }
-                      >
+              {nannyData
+                .filter(
+                  (nanny: any) =>
+                    nanny.nannyNic.includes(query) ||
+                    nanny.nannyFullName.toLowerCase().includes(query),
+                )
+                .map((nanny: any) => {
+                  return (
+                    <tr
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                      key={nanny.id}
+                    >
+                      <td className="p-4">
+                        <img
+                          className="w-15 h-10 rounded-full "
+                          src={nanny.nannyImg}
+                          alt="nanny image"
+                        />{" "}
+                      </td>
+                      <td className="p-4"> {nanny.nannyFullName} </td>
+                      <td className="p-4"> {nanny.nannyNic} </td>
+                      <td className="p-4 "> {nanny.nannyAge} years</td>
+                      <td className="p-4 ">
                         {" "}
-                        See More{" "}
-                      </button>{" "}
-                    </td>
-                  </tr>
-                );
-              })}
+                        {nanny.nannyPrefferedDistrict1}{" "}
+                      </td>
+                      <td className="p-4 ">
+                        {" "}
+                        {nanny.nannyPrefferedDistrict2}{" "}
+                      </td>
+                      <td className="p-4 "> {nanny.agent.agentCompanyName} </td>
+                      <td className="p-4"> {nanny.nannyEthniity}</td>
+                      <td className="p-4 "> {nanny.nannyReligion}</td>
+                      <td className="p-4 "> {nanny.nannyQualification}</td>
+                      <td className="p-4">
+                        {" "}
+                        <button
+                          type="button"
+                          className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                          onClick={() =>
+                            navigate("/detailedNannyAdmin", {
+                              state: { nannyNic: nanny.nannyNic },
+                            })
+                          }
+                        >
+                          {" "}
+                          See More{" "}
+                        </button>{" "}
+                      </td>
+                    </tr>
+                  );
+                })}
             </div>
           </tbody>
         </table>

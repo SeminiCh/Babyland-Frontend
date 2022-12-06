@@ -83,12 +83,13 @@ function nannyTableAdmin() {
                     >
                       <td className="p-4">
                         <img
-                          className="w-15 h-10 rounded-full "
+                          className="w-20 h-10 rounded-full "
                           src={nanny.nannyImg}
                           alt="nanny image"
                         />{" "}
                       </td>
                       <td className="p-4"> {nanny.nannyFullName} </td>
+                      <td className="p-4"> {nanny.availability}</td>
                       <td className="p-4"> {nanny.nannyNic} </td>
                       <td className="p-4 "> {nanny.nannyAge} years</td>
                       <td className="p-4 ">
@@ -117,6 +118,26 @@ function nannyTableAdmin() {
                           {" "}
                           See More{" "}
                         </button>{" "}
+                      </td>
+                      <td className="p-4">
+                        <button
+                          type="submit"
+                          className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                          onClick={(e) => {
+                            const url = `http://localhost:8080/api/v1/nanny/delete/${nanny.nannyNic}`;
+                            fetch(url, { method: "DELETE" })
+                              .then((response) => {
+                                if (!response.ok) {
+                                  throw new Error("Something Went Wrong");
+                                }
+                              })
+                              .catch(() => {
+                                console.log(e);
+                              });
+                          }}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   );

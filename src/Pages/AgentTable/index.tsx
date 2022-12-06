@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/img-redundant-alt */
@@ -8,6 +9,7 @@ import AgentService from "../../api/services/AgentService";
 
 function agentTable() {
   const [agentData, setAgentData] = useState<any>([]);
+  const [queryAgent, setQueryAgent] = useState("");
   useEffect(() => {
     async function fetchAgentData() {
       const response = await AgentService.getAllAgents();
@@ -44,42 +46,61 @@ function agentTable() {
             id="table-search-users"
             className="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Search for users"
+            onChange={(e) => setQueryAgent(e.target.value)}
           />
         </div>
       </div>
       <table className="w-fit text-sm text-gray-500 dark:text-gray-400">
         <tbody>
           <div>
-            {agentData.map((agent: any) => {
-              return (
-                <tr
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                  key={agent.id}
-                >
-                  <td className="p-4">
-                    <img
-                      className="w-20 h-10 rounded-full "
-                      src={agent.agentOfficerImg}
-                      alt="agent image"
-                    />{" "}
-                  </td>
-                  <td className="p-4"> {agent.agentCompanyName} </td>
-                  <td className="p-4"> {agent.agentCompanyAddress} </td>
-                  <td className="p-4 "> {agent.agentEmployeeName} </td>
-                  <td className="p-4 "> {agent.agentPersonDesignation} </td>
-                  <td className="p-4 "> {agent.agentPersonNic} </td>
-                  <td className="p-4 "> {agent.agentCompanyPhone} </td>
-                  <td className="p-4 "> {agent.agentPersonPhone} </td>
-                  <td className="p-4 "> {agent.agentPersonEmail} </td>
-                  <a
-                    href="/"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            {agentData
+              .filter((agent: any) =>
+                agent.agentCompanyName.includes(queryAgent),
+              )
+              .map((agent: any) => {
+                return (
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    key={agent.id}
                   >
-                    Edit user
-                  </a>
-                </tr>
-              );
-            })}
+                    <td className="p-4">
+                      <img
+                        className="w-20 h-10 rounded-full "
+                        src={agent.agentOfficerImg}
+                        alt="agent image"
+                      />{" "}
+                    </td>
+                    <td className="p-4"> {agent.agentCompanyName} </td>
+                    <td className="p-4"> {agent.agentCompanyAddress} </td>
+                    <td className="p-4 "> {agent.agentEmployeeName} </td>
+                    <td className="p-4 "> {agent.agentPersonDesignation} </td>
+                    <td className="p-4 "> {agent.agentPersonNic} </td>
+                    <td className="p-4 "> {agent.agentCompanyPhone} </td>
+                    <td className="p-4 "> {agent.agentPersonPhone} </td>
+                    <td className="p-4 "> {agent.agentPersonEmail} </td>
+                    <td className="p-4">
+                      <button
+                        type="submit"
+                        className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                        onClick={(e) => {
+                          const url = `http://localhost:8080/api/v1/nanny/delete/${agent.agentCompanyName}`;
+                          fetch(url, { method: "DELETE" })
+                            .then((response) => {
+                              if (!response.ok) {
+                                throw new Error("Something Went Wrong");
+                              }
+                            })
+                            .catch(() => {
+                              console.log(e);
+                            });
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
           </div>
         </tbody>
       </table>

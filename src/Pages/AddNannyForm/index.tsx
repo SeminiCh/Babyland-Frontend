@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/self-closing-comp */
@@ -9,6 +10,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import AgentService from "../../api/services/AgentService";
 
 import Footer from "../../Components/Footer";
@@ -43,6 +45,7 @@ interface NannyFormData {
 
 function addNannyForm() {
   const [agentData, setAgentData] = useState<any>([]);
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchAgentData() {
       const response = await AgentService.getAllAgents();
@@ -198,13 +201,20 @@ function addNannyForm() {
           <ul className="items-center w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 sm:flex dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
-                <input
+                <select
                   {...register("nannyPreparingChildMeal", {})}
                   id="nannyPreparingChildMeal"
-                  type="checkbox"
-                  value="Preparing child Meal"
                   className="w-4 h-4 text-red-900 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:red-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
+                >
+                  <option value="She prepares meals for your Baby">
+                    {" "}
+                    Yes, She prepares meals for your Baby
+                  </option>
+                  <option value="She doesn't prepare meals for your Baby">
+                    {" "}
+                    No, She does not prepare meals
+                  </option>
+                </select>
                 <label
                   htmlFor="nannyPreparingChildMeal"
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -215,13 +225,20 @@ function addNannyForm() {
             </li>
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
-                <input
+                <select
                   {...register("nannyPetLover", {})}
                   id="nannyPetLover"
-                  type="checkbox"
-                  value="Pet Lover"
                   className="w-4 h-4 text-red-900 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:red-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
+                >
+                  <option value="She is a Pet Lover">
+                    {" "}
+                    Yes, She is a Pet Lover
+                  </option>
+                  <option value="She is not interested in pets">
+                    {" "}
+                    No, She is not interested in pets
+                  </option>
+                </select>
                 <label
                   htmlFor="nannyPetLover"
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -232,13 +249,20 @@ function addNannyForm() {
             </li>
             <li className="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
               <div className="flex items-center pl-3">
-                <input
+                <select
                   {...register("nannyDifferentlyAbledCare", {})}
                   id="nannyDifferentlyAbledCare"
-                  type="checkbox"
-                  value="Specialized in differently Abled child care"
                   className="w-4 h-4 text-red-900 bg-gray-100 rounded border-gray-300 focus:ring-red-500 dark:focus:red-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
+                >
+                  <option value="She is specilized in Differently abled Baby Care">
+                    {" "}
+                    Yes, She is specilized in Differently abled Baby Care
+                  </option>
+                  <option value="She is not specilized in Differently abled Baby Care">
+                    {" "}
+                    No, She is not specilized in Differently abled Baby Care
+                  </option>
+                </select>
                 <label
                   htmlFor="nannyDifferentlyAbledCare"
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -249,13 +273,20 @@ function addNannyForm() {
             </li>
             <li className="w-full dark:border-gray-600">
               <div className="flex items-center pl-3">
-                <input
+                <select
                   {...register("nannyVegetaian", {})}
                   id="nannyVegetaian"
-                  type="checkbox"
-                  value="Vegitarian"
                   className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
-                />
+                >
+                  <option value="She is Vegetarian">
+                    {" "}
+                    Yes, She is vegetarian
+                  </option>
+                  <option value="She is not a vegetarian">
+                    {" "}
+                    No, She is not a vegetarian
+                  </option>
+                </select>
                 <label
                   htmlFor="nannyVegetaian"
                   className="py-3 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -425,7 +456,7 @@ function addNannyForm() {
                 <option value="Malays"> Malays </option>
               </select>
               <p className="text-red-600 text-xs">
-                {errors.nannyReligion && "Invalid! Religion Cannot Be empty."}
+                {errors.nannyReligion && "Invalid! Ethnicity Cannot Be empty."}
               </p>
             </div>
             <div>
@@ -493,7 +524,7 @@ function addNannyForm() {
               </select>
               <p className="text-red-600 text-xs">
                 {errors.nannyPrefferedDistrict1 &&
-                  "Invalid! Religion Cannot Be empty."}
+                  "Invalid! This Cannot Be empty."}
               </p>
             </div>
             <div>
@@ -539,7 +570,7 @@ function addNannyForm() {
               </select>
               <p className="text-red-600 text-xs">
                 {errors.nannyPrefferedDistrict2 &&
-                  "Invalid! Religion Cannot Be empty."}
+                  "Invalid! This Cannot Be empty."}
               </p>
             </div>
             <div className="mb-6">
@@ -689,7 +720,7 @@ function addNannyForm() {
           </div>
           <div className="mb-6">
             <label
-              htmlFor="nannyImage"
+              htmlFor="nannyImg"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Image

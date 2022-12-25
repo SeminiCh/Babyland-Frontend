@@ -64,10 +64,11 @@ function Home() {
                 <h3 className="font-bold text-2xl my-6"> 24 Hours Service </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the standard dummy
-                  text ever since the 1500s, when an unknown printer took a
-                  galley of type and scrambled it to make a type specimen book.
+                  If you find yourself in need of a babysitter, the internet is
+                  a great place to start And in truth, it can be a great way to
+                  find a someone to care for your child if you know where to
+                  look, what questions to ask, and how to vet not just the
+                  sitters themselves, but also the sites offering the services.
                 </p>
               </div>
               <div className="bg-slate-100 pl-8 py-4">
@@ -82,10 +83,11 @@ function Home() {
                 <h3 className="font-bold text-2xl my-6"> Reliable Service </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the standard dummy
-                  text ever since the 1500s, when an unknown printer took a
-                  galley of type and scrambled it to make a type specimen book.{" "}
+                  If you find yourself in need of a babysitter, the internet is
+                  a great place to start And in truth, it can be a great way to
+                  find a someone to care for your child if you know where to
+                  look, what questions to ask, and how to vet not just the
+                  sitters themselves, but also the sites offering the services.{" "}
                 </p>
               </div>
               <div className="bg-slate-100 pl-8 py-4">

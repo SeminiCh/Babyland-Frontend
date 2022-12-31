@@ -1,11 +1,40 @@
+/* eslint-disable no-console */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
+
+import { useForm } from "react-hook-form";
 import logoImage from "../../Assets/imageLogo002.png";
 import signupImage from "../../Assets/imageSignin001.jpg";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
+interface LoginFormData {
+  usernameCustomer: String;
+  passwordCustomer: String;
+}
+
 function SignIn() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({ mode: "onChange" });
+
+  const onSubmit = handleSubmit(({ usernameCustomer, passwordCustomer }) => {
+    const login = {
+      usernameCustomer,
+      passwordCustomer,
+    };
+
+    fetch("http://localhost:8080/api/v1/login/customerlogin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(login),
+    }).then(() => {
+      console.log("Login Successfull");
+    });
+  });
   return (
     <>
       <Navigationbarcustomer />
@@ -19,7 +48,7 @@ function SignIn() {
             />
           </div>
           <div className="flex-1 p-4 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-            <form className="space-y-6" action="#">
+            <form className="space-y-6" onSubmit={onSubmit}>
               <h5 className="text-xl flex items-center font-medium text-gray-900 dark:text-white">
                 <img className="w-30 h-20 rounded-md" src={logoImage} alt="/" />
                 <p>Log into your Account</p>
@@ -32,13 +61,19 @@ function SignIn() {
                   Email
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  id="email"
+                  {...register("usernameCustomer", {
+                    required: true,
+                  })}
+                  type="text"
+                  name="usernameCustomer"
+                  id="usernameCustomer"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="name@gmail.com"
                   required
                 />
+                <p className="text-red-600 text-xs">
+                  {errors.usernameCustomer && "Invalid!"}
+                </p>
               </div>
               <div>
                 <label
@@ -48,9 +83,12 @@ function SignIn() {
                   Your password
                 </label>
                 <input
+                  {...register("usernameCustomer", {
+                    required: true,
+                  })}
                   type="password"
-                  name="password"
-                  id="password"
+                  name="passwordCustomer"
+                  id="passwordCustomer"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   required

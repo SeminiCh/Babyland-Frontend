@@ -37,6 +37,7 @@ function SidebarAdmin() {
                 <button className="px-8 py-3"> Hired Nannies </button>{" "}
               </Link>
             </li>
+
             <li className="m-2  text-white">
               <Link to="/parenttableAdmin">
                 {" "}
@@ -50,6 +51,12 @@ function SidebarAdmin() {
               <Link to="/addAgent">
                 {" "}
                 <button className="px-8 py-3"> Agents </button>{" "}
+              </Link>
+            </li>
+            <li className="m-2  text-white">
+              <Link to="/">
+                {" "}
+                <button className="px-8 py-3"> Suggestions </button>{" "}
               </Link>
             </li>
           </ul>

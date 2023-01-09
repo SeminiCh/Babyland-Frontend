@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable max-len */
 
 import { useForm } from "react-hook-form";
+import { Auth0Provider } from "@auth0/auth0-react";
 import logoImage from "../../Assets/imageLogo002.png";
 import signupImage from "../../Assets/imageSignin001.jpg";
 import Footer from "../../Components/Footer";

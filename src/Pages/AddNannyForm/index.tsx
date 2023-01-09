@@ -44,18 +44,6 @@ interface NannyFormData {
 }
 
 function addNannyForm() {
-  const [agentData, setAgentData] = useState<any>([]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    async function fetchAgentData() {
-      const response = await AgentService.getAllAgents();
-      if (response) {
-        setAgentData(response?.data);
-      }
-    }
-    fetchAgentData();
-  });
-
   let base64codeNannyImage: string | number | readonly string[] | undefined;
   let base64codeFileNannyCerti: string | number | readonly string[] | undefined;
   const onLoadNI = (fileString: any) => {
@@ -169,6 +157,18 @@ function addNannyForm() {
       });
     },
   );
+
+  const [agentData, setAgentData] = useState<any>([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    async function fetchAgentData() {
+      const response = await AgentService.getAllAgents();
+      if (response) {
+        setAgentData(response?.data);
+      }
+    }
+    fetchAgentData();
+  });
   return (
     <>
       <SidebarAdmin />

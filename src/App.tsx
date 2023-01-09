@@ -16,6 +16,7 @@ import DetailedNannyAdmin from "./Pages/DetailedNannyAdmin";
 import ParentTableAdmin from "./Pages/ParentTableAdmin";
 import AdminDashboard from "./Pages/AdminDashboard";
 import NannyRating from "./Pages/NannyRating";
+import ViewSuggestionsAdmin from "./Pages/ViewSuggestionsAdmin";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/parenttableAdmin" element={<ParentTableAdmin />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/nannyRating" element={<NannyRating />} />
+        <Route path="/viewSuggestion" element={<ViewSuggestionsAdmin />} />
       </Routes>
     </Router>
   );

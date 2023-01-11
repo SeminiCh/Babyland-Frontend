@@ -11,6 +11,10 @@ import NannyService from "../../api/services/NannyService";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
+interface NannyUpdateData {
+  availability: String;
+}
+
 interface ParentFormData {
   parentFullName: String;
   parentRelationshipToBaby: String;
@@ -374,6 +378,18 @@ function parentInfomation() {
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            onClick={(e) => {
+              const url = `http://localhost:8080/api/v1/nanny/update/${nannyData.nannyNic}`;
+              fetch(url, { method: "PUT" })
+                .then((response) => {
+                  if (!response.ok) {
+                    throw new Error("Something Went Wrong");
+                  }
+                })
+                .catch(() => {
+                  console.log(e);
+                });
+            }}
           >
             Submit
           </button>

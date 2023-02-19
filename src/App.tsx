@@ -17,6 +17,7 @@ import ParentTableAdmin from "./Pages/ParentTableAdmin";
 import AdminDashboard from "./Pages/AdminDashboard";
 import NannyRating from "./Pages/NannyRating";
 import ViewSuggestionsAdmin from "./Pages/ViewSuggestionsAdmin";
+// import NannyCardRating from "./Components/NannyCardRating";
 
 function App() {
   return (

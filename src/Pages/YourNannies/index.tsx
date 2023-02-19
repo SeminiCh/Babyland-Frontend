@@ -8,13 +8,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NannyCard from "../../Components/NannyCard";
+import NannyCardRating from "../../Components/NannyCardRating";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 // import { nannyData } from "../../Data/nannyData";
 import Footer from "../../Components/Footer";
 import image from "../../Assets/imageNanny005.jpg";
 import NannyService from "../../api/services/NannyService";
 
-function Nanny() {
+function YourNannies() {
   const navigate = useNavigate();
   const [nannyData, setNannyData] = useState<any>([]);
 
@@ -158,41 +159,25 @@ function Nanny() {
             </div>
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
-            {nannyData
-              .filter(
-                (nanny: any) =>
-                  nanny.availability.toLowerCase().includes("yes") &&
-                  nanny.nannyWorkingHours.includes(queryWorkingHours) &&
-                  (nanny.nannyLanguage1.includes(queryLanguages) ||
-                    nanny.nannyLanguage2.includes(queryLanguages) ||
-                    nanny.nannyLanguage3.includes(queryLanguages)) &&
-                  (nanny.nannyPrefferedDistrict1.includes(queryDistricts) ||
-                    nanny.nannyPrefferedDistrict2.includes(queryDistricts)),
-                // nanny.nannyAge > queryMinAge &&
-                // nanny.nannyAge < queryMaxAge,
-              )
-              .map((nanny: any) => {
-                return (
-                  <div className="flex">
-                    <NannyCard
-                      key={nanny.id}
-                      name={nanny.nannyFullName}
-                      photo={nanny.nannyImg}
-                      agent={nanny.agent.agentCompanyName}
-                      experience={nanny.nannyQualification}
-                      age={nanny.nannyAge}
-                      firstdistrict={nanny.nannyPrefferedDistrict1}
-                      secondDistrict={nanny.nannyPrefferedDistrict2}
-                      image={image}
-                      onNavigate={() =>
-                        navigate(`/detailedNanny`, {
-                          state: { nannyNic: nanny.nannyNic },
-                        })
-                      }
-                    />
-                  </div>
-                );
-              })}
+            {nannyData.map((nanny: any) => {
+              return (
+                <div className="flex">
+                  <NannyCardRating
+                    key={nanny.id}
+                    name={nanny.nannyFullName}
+                    photo={nanny.nannyImg}
+                    agent={nanny.agent.agentCompanyName}
+                    age={nanny.nannyAge}
+                    image={image}
+                    onNavigate={() =>
+                      navigate(`/detailedNanny`, {
+                        state: { nannyNic: nanny.nannyNic },
+                      })
+                    }
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -201,4 +186,4 @@ function Nanny() {
   );
 }
 
-export default Nanny;
+export default YourNannies;

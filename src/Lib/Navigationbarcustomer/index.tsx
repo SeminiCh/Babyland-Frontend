@@ -70,9 +70,10 @@ function Navigationbarcustomer() {
         <li className="border-b-2 border-zinc-300 w-full">
           <button className="px-8 py-3"> Contact </button>{" "}
         </li>
-        <div className="flex flex-col my-4">
-          <Button title="Sign In" onClickHandler={() => null} />
-        </div>
+        <li className="border-b-2 border-zinc-300 w-full">
+          {" "}
+          <p> Hello! </p>
+        </li>
       </ul>
     </div>
   );

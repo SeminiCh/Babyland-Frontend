@@ -5,8 +5,9 @@
 /* eslint-disable max-len */
 
 import { yupResolver } from "@hookform/resolvers/yup";
+import { type } from "os";
 import { FormProvider, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import logoImage from "../../Assets/imageLogo002.png";
 import signupImage from "../../Assets/imageSignin001.jpg";
@@ -33,7 +34,6 @@ const customerLoginSchema: Yup.SchemaOf<LoginFormData> = Yup.object({
 
 function SignIn() {
   const navigate = useNavigate();
-
   const methods = useForm<LoginFormData>({
     mode: "onChange",
     resolver: yupResolver(customerLoginSchema),

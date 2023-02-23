@@ -10,13 +10,13 @@ import FormImg from "../../Assets/imageMomsForm006.png";
 
 import Footer from "../../Components/Footer";
 import InputText from "../../Components/InputText";
-import Navigationbarcustomer from "../Navigationbarcustomer";
+import NavigationbarcustomerLogged from "../NavigationBarCustomerLogged";
 
 interface SuggestionFormData {
   suggestionComment: String;
 }
 
-function Home() {
+function HomepageCustomer() {
   const {
     register,
     handleSubmit,
@@ -39,7 +39,7 @@ function Home() {
 
   return (
     <>
-      <Navigationbarcustomer />
+      <NavigationbarcustomerLogged />
       <div className="w-full">
         <div className="w-full h-[700px] bg-gray-900/90 absolute">
           <img
@@ -162,4 +162,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomepageCustomer;

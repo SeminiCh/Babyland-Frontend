@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
-import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
+
+import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
 
 function nannyRating() {
   return (
     <>
-      <Navigationbarcustomer />
+      <NavigationbarcustomerLogged />
       <div>
         <form className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 relative gap-x-8 gap-y-16 px-4 pt-12 sm:pt-20 text-black">

@@ -2,9 +2,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logoImage from "../../Assets/imageLogo002.png";
-import Button from "../../Components/Button/Index";
 
-function Navigationbarcustomer() {
+function NavigationbarcustomerLogged() {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
 
@@ -27,7 +26,12 @@ function Navigationbarcustomer() {
                 <button className="px-8 py-3"> Nannies </button>{" "}
               </Link>
             </li>
-
+            <li className="m-2  text-red-800">
+              <Link to="/nannies">
+                {" "}
+                <button className="px-8 py-3"> Your Nannies </button>{" "}
+              </Link>
+            </li>
             <li className="m-2  text-red-800">
               <Link to="/nannies">
                 {" "}
@@ -37,9 +41,7 @@ function Navigationbarcustomer() {
           </ul>
         </div>
         <div className="hidden md:flex pr-4">
-          <Link to="/signin">
-            <Button title="Sign In" />
-          </Link>
+          <p> Hello !</p>
         </div>
         <button className="md:hidden mr-4" onClick={handleClick}>
           {!nav ? (
@@ -74,4 +76,4 @@ function Navigationbarcustomer() {
   );
 }
 
-export default Navigationbarcustomer;
+export default NavigationbarcustomerLogged;

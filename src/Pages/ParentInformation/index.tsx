@@ -16,6 +16,7 @@ interface NannyUpdateData {
 }
 
 interface ParentFormData {
+  usernameCustomer: String;
   parentFullName: String;
   parentRelationshipToBaby: String;
   parentOccupation: String;
@@ -99,6 +100,7 @@ function parentInfomation() {
 
   const onSubmit = handleSubmit(
     ({
+      usernameCustomer,
       parentFullName,
       parentRelationshipToBaby,
       parentAddress,
@@ -116,6 +118,7 @@ function parentInfomation() {
       nannyNic,
     }) => {
       const parent = {
+        usernameCustomer,
         parentFullName,
         parentRelationshipToBaby,
         parentAddress,
@@ -148,6 +151,24 @@ function parentInfomation() {
         <form onSubmit={onSubmit}>
           <h1> Parent Information </h1>
           <div className="grid gap-6 mb-6 md:grid-cols-2 bg-blue-200 p-10">
+            <div>
+              <label
+                htmlFor="usernameCustomer"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Your Username
+              </label>
+              <input
+                {...register("usernameCustomer", {
+                  required: true,
+                })}
+                type="text"
+                id="usernameCustomer"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Username"
+                required
+              />
+            </div>
             <div>
               <label
                 htmlFor="parentFullName"

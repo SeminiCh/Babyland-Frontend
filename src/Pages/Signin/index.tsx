@@ -64,7 +64,7 @@ function SignIn() {
             message: "Username or Password is incorrect",
           });
         } else {
-          navigate("/");
+          navigate("/home");
         }
       });
   });

@@ -2,11 +2,10 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 
-interface INannyCard {
+interface INannyCardRating {
   name: String;
   photo: any;
-  age: String;
-  agent: String;
+
   image: string;
 
   onNavigate: () => void;
@@ -14,14 +13,11 @@ interface INannyCard {
 
 function NannyCardRating({
   name,
-  agent,
   photo,
-
-  age,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   image,
   onNavigate,
-}: INannyCard) {
+}: INannyCardRating) {
   return (
     <div className="m-8">
       <div className="max-w-xs bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -36,8 +32,6 @@ function NannyCardRating({
           <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {name}
           </h5>
-          <h6> {agent} </h6>
-          <p>{age} Years </p>
 
           <div className="flex justify-between items-center">
             <button

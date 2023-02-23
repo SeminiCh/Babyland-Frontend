@@ -17,6 +17,8 @@ import ParentTableAdmin from "./Pages/ParentTableAdmin";
 import AdminDashboard from "./Pages/AdminDashboard";
 import NannyRating from "./Pages/NannyRating";
 import ViewSuggestionsAdmin from "./Pages/ViewSuggestionsAdmin";
+import HomepageCustomer from "./Lib/HomepageCustomer";
+import YourNannies from "./Pages/YourNannies";
 // import NannyCardRating from "./Components/NannyCardRating";
 
 function App() {
@@ -25,8 +27,10 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/home" element={<HomepageCustomer />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/nannies" element={<Nanny />} />
+        <Route path="mynannies" element={<YourNannies />} />
         <Route path="/detailedNanny" element={<DetailedNanny />} />
         <Route path="/SidebarAdmin" element={<SidebarAdmin />} />
         <Route path="/AddNanny" element={<AddNanny />} />

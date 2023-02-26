@@ -6,7 +6,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NannyCard from "../../Components/NannyCard";
 import NannyCardRating from "../../Components/NannyCardRating";
 // import { nannyData } from "../../Data/nannyData";
@@ -16,8 +16,13 @@ import NannyService from "../../api/services/NannyService";
 import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
 import ParentService from "../../api/services/ParentService";
 
+type CustomerInfoState = {
+  usernameCustomer: string;
+};
 function YourNannies() {
   const navigate = useNavigate();
+  const customerDetails = useLocation();
+  const { usernameCustomer } = customerDetails.state as CustomerInfoState;
   const [parentData, setParentData] = useState<any>([]);
 
   useEffect(() => {
@@ -44,23 +49,27 @@ function YourNannies() {
             </div>
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
-            {parentData.map((parent: any) => {
-              return (
-                <div className="flex">
-                  <NannyCardRating
-                    key={parent.id}
-                    name={parent.nanny.nannyFullName}
-                    photo={parent.nanny.nannyImg}
-                    image={image}
-                    onNavigate={() =>
-                      navigate(`/nannyRating`, {
-                        state: { nannyNic: parent.nanny.nannyNic },
-                      })
-                    }
-                  />
-                </div>
-              );
-            })}
+            {parentData
+              .filter((parent: any) =>
+                parent.customer.usernameCustomer.includes(usernameCustomer),
+              )
+              .map((parent: any) => {
+                return (
+                  <div className="flex">
+                    <NannyCardRating
+                      key={parent.id}
+                      name={parent.nanny.nannyFullName}
+                      photo={parent.nanny.nannyImg}
+                      image={image}
+                      onNavigate={() =>
+                        navigate(`/nannyRating`, {
+                          state: { nannyNic: parent.nanny.nannyNic },
+                        })
+                      }
+                    />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>

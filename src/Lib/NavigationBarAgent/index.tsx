@@ -16,19 +16,19 @@ function NavigationbarAgent() {
           <h1 className="text-3xl font-bold mr-5 sm:text-4xl"> BABYLAND.LK </h1>
           <ul className="hidden md:flex">
             <li className="m-2  text-red-800">
-              <Link to="/">
+              <Link to="/nannyTableAgent">
                 {" "}
                 <button className="px-8 py-3"> Nannies </button>{" "}
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              <Link to="/nannies">
+              <Link to="/parentTableAdmin">
                 {" "}
                 <button className="px-8 py-3"> Assigned Nannies </button>{" "}
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              <Link to="/nannies">
+              <Link to="/addNannyAgent">
                 {" "}
                 <button className="px-8 py-3"> Add Nannies </button>{" "}
               </Link>

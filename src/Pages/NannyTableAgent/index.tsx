@@ -1,17 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/img-redundant-alt */
+
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
 import Footer from "../../Components/Footer";
 import NavigationbarAgent from "../../Lib/NavigationBarAgent";
 
+type AgentInforState = {
+  agentCompanyName: string;
+};
+
 function nannyTableAgent() {
   const navigate = useNavigate();
+  const agentDetails = useLocation();
+  const { agentCompanyName } = agentDetails.state as AgentInforState;
   const [nannyData, setNannyData] = useState<any>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [query, setQuery] = useState("");
@@ -72,8 +80,9 @@ function nannyTableAgent() {
               {nannyData
                 .filter(
                   (nanny: any) =>
-                    nanny.nannyNic.includes(query) ||
-                    nanny.nannyFullName.toLowerCase().includes(query),
+                    (nanny.nannyNic.includes(query) ||
+                      nanny.nannyFullName.toLowerCase().includes(query)) &&
+                    nanny.agent.agentCompanyName.includes(agentCompanyName),
                 )
                 .map((nanny: any) => {
                   return (

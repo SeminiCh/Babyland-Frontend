@@ -20,6 +20,7 @@ import ViewSuggestionsAdmin from "./Pages/ViewSuggestionsAdmin";
 import HomepageCustomer from "./Lib/HomepageCustomer";
 import YourNannies from "./Pages/YourNannies";
 import DashboardAdmin from "./Pages/DashboardAdmin";
+import AddNannyAgent from "./Pages/AddNannyAgent";
 // import NannyCardRating from "./Components/NannyCardRating";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/detailedNanny" element={<DetailedNanny />} />
         <Route path="/SidebarAdmin" element={<SidebarAdmin />} />
         <Route path="/AddNanny" element={<AddNanny />} />
+        <Route path="/addNannyAgent" element={<AddNannyAgent />} />
         <Route path="/signInAgent" element={<SignInAgent />} />
         <Route path="/addAgent" element={<AddAgentForm />} />
         <Route path="/parentInformation" element={<ParentInfo />} />

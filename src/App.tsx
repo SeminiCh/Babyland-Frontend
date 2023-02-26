@@ -19,6 +19,7 @@ import NannyRating from "./Pages/NannyRating";
 import ViewSuggestionsAdmin from "./Pages/ViewSuggestionsAdmin";
 import HomepageCustomer from "./Lib/HomepageCustomer";
 import YourNannies from "./Pages/YourNannies";
+import DashboardAdmin from "./Pages/DashboardAdmin";
 // import NannyCardRating from "./Components/NannyCardRating";
 
 function App() {
@@ -38,13 +39,14 @@ function App() {
         <Route path="/addAgent" element={<AddAgentForm />} />
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
-        <Route path="/nannyTable" element={<NannyTableAgent />} />
+        <Route path="/nannyTableAgent" element={<NannyTableAgent />} />
         <Route path="/nannyTableAdmin" element={<NannyTableAdmin />} />
         <Route path="/detailedNannyAdmin" element={<DetailedNannyAdmin />} />
         <Route path="/parenttableAdmin" element={<ParentTableAdmin />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/nannyRating" element={<NannyRating />} />
         <Route path="/viewSuggestion" element={<ViewSuggestionsAdmin />} />
+        <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
       </Routes>
     </Router>
   );

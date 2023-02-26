@@ -4,7 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
-import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
+import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
 
 type NannyInfoState = {
   nannyNic: string;
@@ -27,7 +27,7 @@ function DetailedNanny() {
   });
   return (
     <>
-      <Navigationbarcustomer />
+      <NavigationbarcustomerLogged />
       <main className="flex items-center justify-center h-screen pt-20">
         {" "}
         <div className="w-fit h-fit m-10 bg-blue-50 p-5">

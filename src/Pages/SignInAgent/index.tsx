@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import logoImage from "../../Assets/imageLogo002.png";
 import signupImage from "../../Assets/imageSignin001.jpg";
 import Footer from "../../Components/Footer";
-import Navigationbarcustomer from "../../Lib/NavigationBarAgent";
+import NavigationbarAgent from "../../Lib/NavigationBarAgent";
 
 interface AgentLoginFormData {
   agentCompanyName: string;
@@ -19,8 +19,8 @@ interface AgentLoginFormData {
 }
 
 const agentLoginSchema: Yup.SchemaOf<AgentLoginFormData> = Yup.object({
-  agentCompanyName: Yup.string().required("agentCompanyName is required"),
-  agentPassword: Yup.string().required("agentPassword is required"),
+  agentCompanyName: Yup.string().required("CompanyName is required"),
+  agentPassword: Yup.string().required("Password is required"),
   // contact: Yup.array().of(
   //   Yup.object().shape({
   //     index: Yup.number().required("index must be present"),
@@ -61,7 +61,7 @@ function SignInAgent() {
       .then((res) => {
         if (res === null) {
           setError("agentCompanyName", {
-            message: "Username or Password is incorrect",
+            message: "Company Name or Password is incorrect",
           });
         } else {
           navigate("/nannyTableAdmin");
@@ -70,10 +70,10 @@ function SignInAgent() {
   });
   return (
     <>
-      <Navigationbarcustomer />
+      <NavigationbarAgent />
       <main className="flex items-center justify-center h-screen">
         <div className="bg-white rounded-lg border-gray-500 shadow-md flex justify-center items-center">
-          <div className="h-full flex-1 w-80 bg-red-500">
+          <div className="h-full flex-1 w-80">
             <img
               className="h-full rounded-md object-cover"
               src={signupImage}
@@ -105,7 +105,6 @@ function SignInAgent() {
                     id="agentCompanyName"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                     placeholder="Company Name"
-                    required
                   />
                   <p className="text-red-600 text-xs">
                     {errors && errors.agentCompanyName?.message}
@@ -125,23 +124,20 @@ function SignInAgent() {
                     id="agentPassword"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    required
                   />
                   <p className="text-red-600 text-xs">
                     {errors && errors.agentPassword?.message}
                   </p>
                 </div>
-                <div className="flex items-start">
-                  <a
-                    href="agentPassword"
-                    className="ml-auto text-sm text-red-700 hover:underline dark:text-red-700"
-                  >
-                    Forgot agentPassword?
-                  </a>
-                </div>
+
                 <button
                   type="submit"
                   className="w-full text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-700 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  // onClick={() =>
+                  //   navigate("//nannyTableAgent", {
+                  //     state: { agentCompanyName },
+                  //   })
+                  // }
                 >
                   Login to your account
                 </button>

@@ -109,14 +109,17 @@ function Home() {
             </div>
             <div className="bg-white rounded-xl shadow-2xl">
               <div className="p-8">
-                <h3 className="font-bold text-2xl my-6"> Reliable Service </h3>
+                <h3 className="font-bold text-2xl my-6">
+                  {" "}
+                  10 Years Experience{" "}
+                </h3>
                 <p className="text-gray-600 text-sm">
                   {" "}
-                  If you find yourself in need of a babysitter, the internet is
-                  a great place to start And in truth, it can be a great way to
-                  find a someone to care for your child if you know where to
-                  look, what questions to ask, and how to vet not just the
-                  sitters themselves, but also the sites offering the services.{" "}
+                  One of the most important factors in hiring a nanny is being
+                  clear about your needs and expectations. We help you find
+                  attract candidates who are a good fit for your family and
+                  avoid misunderstandings down the road with our 10 years
+                  Experience.{" "}
                 </p>
               </div>
               <div className="bg-slate-100 pl-8 py-4">

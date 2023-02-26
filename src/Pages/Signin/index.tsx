@@ -73,7 +73,7 @@ function SignIn() {
       <Navigationbarcustomer />
       <main className="flex items-center justify-center h-screen">
         <div className="bg-white rounded-lg border-gray-500 shadow-md flex justify-center items-center">
-          <div className="h-full flex-1 w-80 bg-red-500">
+          <div className="h-full flex-1 w-80">
             <img
               className="h-full rounded-md object-cover"
               src={signupImage}
@@ -131,31 +131,7 @@ function SignIn() {
                     {errors && errors.password?.message}
                   </p>
                 </div>
-                <div className="flex items-start">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="remember"
-                        type="checkbox"
-                        value=""
-                        className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-red-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-red-700 dark:ring-offset-gray-800"
-                        required
-                      />
-                    </div>
-                    <label
-                      htmlFor="remember"
-                      className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 mr-2"
-                    >
-                      Remember me
-                    </label>
-                  </div>
-                  <a
-                    href="Password"
-                    className="ml-auto text-sm text-red-700 hover:underline dark:text-red-700"
-                  >
-                    Forgot Password?
-                  </a>
-                </div>
+
                 <button
                   type="submit"
                   className="w-full text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-700 dark:hover:bg-red-700 dark:focus:ring-red-800"

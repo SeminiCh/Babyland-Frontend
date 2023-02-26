@@ -45,10 +45,10 @@ function RegisterCustomer() {
       <Navigationbarcustomer />
       <main className="flex items-center justify-center h-screen pt-28">
         <div className="bg-white rounded-lg border-gray-500 shadow-md flex justify-center items-center">
-          <div className="flex-1 p-4 max-w-sm bg-red-100 rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div className="flex-1 max-w-sm bg-red-100 rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
             <form className="space-y-6" onSubmit={onSubmit}>
               <h5 className="text-xl flex items-center font-medium text-gray-900 dark:text-white">
-                <img className="w-30 h-20 rounded-md" src={logoImage} alt="/" />
+                <img className="w-30 h-10 rounded-md" src={logoImage} alt="/" />
                 <p>Create an Account</p>
               </h5>
               <div>

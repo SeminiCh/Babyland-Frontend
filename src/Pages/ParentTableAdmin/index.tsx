@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -89,9 +90,27 @@ function parentTableAdmin() {
                       <button
                         type="button"
                         className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                        onClick={(e) => {
+                          const url = `http://localhost:8080/api/v1/nanny/update/${parentData.nannyNic}`;
+                          fetch(url, {
+                            method: "PUT",
+                            body: JSON.stringify({
+                              availability: "Yes",
+                              nannyNic: parent.nanny.nannyNic,
+                            }),
+                          })
+                            .then((response) => {
+                              if (!response.ok) {
+                                throw new Error("Something Went Wrong");
+                              }
+                            })
+                            .catch(() => {
+                              console.log(e);
+                            });
+                        }}
                       >
                         {" "}
-                        Confirm{" "}
+                        Completed{" "}
                       </button>{" "}
                     </td>
                   </>

@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
+import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
 
 interface NannyUpdateData {
   availability: String;
@@ -146,7 +147,7 @@ function parentInfomation() {
   );
   return (
     <>
-      <Navigationbarcustomer />
+      <NavigationbarcustomerLogged />
       <div className="p-24">
         <form onSubmit={onSubmit}>
           <h1> Parent Information </h1>

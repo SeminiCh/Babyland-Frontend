@@ -27,7 +27,7 @@ function NavigationbarcustomerLogged() {
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              <Link to="/nannies">
+              <Link to="/mynannies">
                 {" "}
                 <button className="px-8 py-3"> Your Nannies </button>{" "}
               </Link>

@@ -37,7 +37,7 @@ function NavigationbarAgent() {
         </div>
         <div className="hidden md:flex pr-4">
           <Link to="/">
-            <Button title="Log Out" />
+            <Button title="Hello" />
           </Link>
         </div>
         <button className="md:hidden mr-4" onClick={handleClick}>
@@ -64,7 +64,7 @@ function NavigationbarAgent() {
           </Link>
         </li>
         <div className="flex flex-col my-4">
-          <Button title="Log out" onClickHandler={() => null} />
+          <Button title="Hello" onClickHandler={() => null} />
         </div>
       </ul>
     </div>

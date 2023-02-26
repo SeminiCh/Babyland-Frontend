@@ -8,11 +8,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NannyCard from "../../Components/NannyCard";
-import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 // import { nannyData } from "../../Data/nannyData";
 import Footer from "../../Components/Footer";
 import image from "../../Assets/imageNanny005.jpg";
 import NannyService from "../../api/services/NannyService";
+import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
 
 function Nanny() {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ function Nanny() {
 
   return (
     <>
-      <Navigationbarcustomer />
+      <NavigationbarcustomerLogged />
       <div className="w-full pt-24">
         <div className="max-w-[1240px] mx-auto px-2">
           <p className="text-2xl py-4 text-gray-500 text-center">

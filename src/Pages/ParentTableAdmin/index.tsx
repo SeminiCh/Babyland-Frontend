@@ -51,10 +51,7 @@ function parentTableAdmin() {
             />
           </div>
         </div>
-        <h2 className="text-lg text-red-800">
-          {" "}
-          Parent Information for Pending Assignment
-        </h2>
+        <h2 className="text-lg text-red-800"> Parent Information</h2>
         <table className="w-fit text-sm text-gray-500 dark:text-gray-400">
           <tbody>
             <div>

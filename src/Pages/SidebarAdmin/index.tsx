@@ -20,7 +20,7 @@ function SidebarAdmin() {
           </h1>
           <ul className="hidden md:flex">
             <li className="m-2  text-white">
-              <Link to="/gg">
+              <Link to="/dashboardAdmin">
                 {" "}
                 <button className="px-8 py-3"> Dashboard </button>{" "}
               </Link>

@@ -5,7 +5,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
-import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
+import SidebarAdmin from "../SidebarAdmin";
 
 type NannyInfoState = {
   nannyNic: string;
@@ -27,7 +27,7 @@ function DetailedNanny() {
   });
   return (
     <>
-      <Navigationbarcustomer />
+      <SidebarAdmin />
       <main className="flex items-center justify-center h-screen pt-20">
         {" "}
         <div className="w-fit h-fit m-10 bg-blue-50 p-5">

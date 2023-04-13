@@ -21,6 +21,8 @@ import HomepageCustomer from "./Lib/HomepageCustomer";
 import YourNannies from "./Pages/YourNannies";
 import DashboardAdmin from "./Pages/DashboardAdmin";
 import AddNannyAgent from "./Pages/AddNannyAgent";
+import RegistrationModal from "./Pages/RegistrationModal";
+
 // import NannyCardRating from "./Components/NannyCardRating";
 
 function App() {
@@ -41,6 +43,7 @@ function App() {
         <Route path="/addAgent" element={<AddAgentForm />} />
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
+        <Route path="/registationSucceed" element={<RegistrationModal />} />
         <Route path="/nannyTableAgent" element={<NannyTableAgent />} />
         <Route path="/nannyTableAdmin" element={<NannyTableAdmin />} />
         <Route path="/detailedNannyAdmin" element={<DetailedNannyAdmin />} />

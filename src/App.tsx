@@ -21,7 +21,15 @@ import HomepageCustomer from "./Lib/HomepageCustomer";
 import YourNannies from "./Pages/YourNannies";
 import DashboardAdmin from "./Pages/DashboardAdmin";
 import AddNannyAgent from "./Pages/AddNannyAgent";
+
 import RegistrationModal from "./Pages/RegistrationModal";
+import ViewNannyRating from "./Pages/ViewNannyRating";
+import NannyNL from "./Pages/NannyNL";
+import HomeView from "./Pages/HomeView";
+import ContactUs from "./Pages/ContactUs";
+import ContactUsView from "./Pages/ContactUsView";
+import ReportsAdmin from "./Pages/ReportsAdmin";
+import ParentTableAgent from "./Pages/ParentTableAgent";
 
 // import NannyCardRating from "./Components/NannyCardRating";
 
@@ -31,9 +39,11 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/homeview" element={<HomeView />} />
         <Route path="/home" element={<HomepageCustomer />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/nannies" element={<Nanny />} />
+        <Route path="/nanniesView" element={<NannyNL />} />
         <Route path="mynannies" element={<YourNannies />} />
         <Route path="/detailedNanny" element={<DetailedNanny />} />
         <Route path="/SidebarAdmin" element={<SidebarAdmin />} />
@@ -52,6 +62,12 @@ function App() {
         <Route path="/nannyRating" element={<NannyRating />} />
         <Route path="/viewSuggestion" element={<ViewSuggestionsAdmin />} />
         <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+        <Route path="/viewNannyRating" element={<ViewNannyRating />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/contactusview" element={<ContactUsView />} />
+        <Route path="/reportAdmin" element={<ReportsAdmin />} />
+        <Route path="/viewnannyrating" element={<ViewNannyRating />} />
+        <Route path="/parentTableAgent" element={<ParentTableAgent />} />
       </Routes>
     </Router>
   );

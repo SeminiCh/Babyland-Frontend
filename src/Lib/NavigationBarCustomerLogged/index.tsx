@@ -15,7 +15,7 @@ function NavigationbarcustomerLogged() {
           <h1 className="text-3xl font-bold mr-5 sm:text-4xl"> BABYLAND.LK </h1>
           <ul className="hidden md:flex">
             <li className="m-2  text-red-800">
-              <Link to="/">
+              <Link to="/homeview">
                 {" "}
                 <button className="px-8 py-3"> Home </button>{" "}
               </Link>
@@ -33,7 +33,7 @@ function NavigationbarcustomerLogged() {
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              <Link to="/nannies">
+              <Link to="/contactusview">
                 {" "}
                 <button className="px-8 py-3"> Contact </button>{" "}
               </Link>

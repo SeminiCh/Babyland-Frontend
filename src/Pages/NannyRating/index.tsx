@@ -25,8 +25,30 @@ type NannyInfoState = {
   nannyNic: string;
 };
 function nannyRating() {
-  // const kindnessratingInt = parseInt(kindnessRating);
-
+  const selectElementForPuntuality = document.getElementById(
+    "puntualityRating",
+  ) as HTMLSelectElement;
+  const selectElementForNeatness = document.getElementById(
+    "ratingValue",
+  ) as HTMLSelectElement;
+  const selectElementForKindness = document.getElementById(
+    "kindnessRating",
+  ) as HTMLSelectElement;
+  const selectElementForCommunication = document.getElementById(
+    "communicationRating",
+  ) as HTMLSelectElement;
+  const selectedOptionValueForPuntuality = selectElementForPuntuality?.value;
+  const selectedOptionValueForNeatness = selectElementForNeatness?.value;
+  const selectedOptionValueForKindness = selectElementForKindness?.value;
+  const selectedOptionValueForCommunication =
+    selectElementForCommunication?.value;
+  const intValueForPuntuality = parseInt(selectedOptionValueForPuntuality, 10);
+  const intValueForNeatness = parseInt(selectedOptionValueForNeatness, 10);
+  const intValueForKindness = parseInt(selectedOptionValueForKindness, 10);
+  const intValueForCommunication = parseInt(
+    selectedOptionValueForCommunication,
+    10,
+  );
   const nannyDetail = useLocation();
   const { nannyNic } = nannyDetail.state as NannyInfoState;
   const [nannyData, setNannyData] = useState<any>([]);
@@ -58,10 +80,10 @@ function nannyRating() {
     }) => {
       const nannyRating = {
         usernameCustomer,
-        nannyNic,
-        ratingValue,
-        puntualityRating,
-        communicationRating,
+        nannyNic: nannyData.nannyNic,
+        ratingValue: intValueForNeatness,
+        puntualityRating: intValueForPuntuality,
+        communicationRating: intValueForCommunication,
         kindnessRating,
         ratingComment,
       };
@@ -103,7 +125,7 @@ function nannyRating() {
                     Your Review
                   </label>
                   <input
-                    {...register("usernameCustomer", {
+                    {...register("ratingComment", {
                       required: true,
                     })}
                     type="text"
@@ -122,6 +144,9 @@ function nannyRating() {
                         Punctuality
                       </label>
                       <select
+                        {...register("puntualityRating", {
+                          required: true,
+                        })}
                         id="puntualityRating"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
@@ -142,6 +167,9 @@ function nannyRating() {
                         Neatness
                       </label>
                       <select
+                        {...register("ratingValue", {
+                          required: true,
+                        })}
                         id="ratingValue"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
@@ -162,6 +190,9 @@ function nannyRating() {
                         Kindness
                       </label>
                       <select
+                        {...register("kindnessRating", {
+                          required: true,
+                        })}
                         id="kindnessRating"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
@@ -182,6 +213,9 @@ function nannyRating() {
                         Communication
                       </label>
                       <select
+                        {...register("communicationRating", {
+                          required: true,
+                        })}
                         id="communicationRating"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       >
@@ -194,6 +228,12 @@ function nannyRating() {
                     </div>
                   </div>
                 </div>
+                <button
+                  type="submit"
+                  className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-900 dark:focus:ring-blue-800"
+                >
+                  Rate
+                </button>
               </form>
             </div>
           </div>

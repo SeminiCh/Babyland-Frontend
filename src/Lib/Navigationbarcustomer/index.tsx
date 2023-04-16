@@ -22,14 +22,14 @@ function Navigationbarcustomer() {
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              <Link to="/nannies">
+              <Link to="/nanniesView">
                 {" "}
                 <button className="px-8 py-3"> Nannies </button>{" "}
               </Link>
             </li>
 
             <li className="m-2  text-red-800">
-              <Link to="/nannies">
+              <Link to="/contactus">
                 {" "}
                 <button className="px-8 py-3"> Contact </button>{" "}
               </Link>
@@ -58,9 +58,6 @@ function Navigationbarcustomer() {
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
           <button className="px-8 py-3"> Nannies </button>{" "}
-        </li>
-        <li className="border-b-2 border-zinc-300 w-full">
-          <button className="px-8 py-3"> Your Nannies </button>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
           <button className="px-8 py-3"> Contact </button>{" "}

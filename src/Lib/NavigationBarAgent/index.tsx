@@ -22,7 +22,7 @@ function NavigationbarAgent() {
               </Link>
             </li>
             <li className="m-2  text-red-800">
-              <Link to="/parentTableAdmin">
+              <Link to="/parentTableAgent">
                 {" "}
                 <button className="px-8 py-3"> Assigned Nannies </button>{" "}
               </Link>

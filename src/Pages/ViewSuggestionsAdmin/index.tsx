@@ -43,7 +43,6 @@ function viewSuggestion() {
           </table>
         </div>
       </div>
-
       <Footer />
     </>
   );

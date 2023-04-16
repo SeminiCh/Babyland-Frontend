@@ -65,7 +65,9 @@ function SignIn() {
             message: "Username or Password is incorrect",
           });
         } else {
-          navigate("/home");
+          navigate("/myNannies", {
+            state: { usernameCustomer: watch("username") },
+          });
         }
       });
   });
@@ -136,11 +138,6 @@ function SignIn() {
                 <button
                   type="submit"
                   className="w-full text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-700 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                  onClick={() =>
-                    navigate("/myNannies", {
-                      state: { usernameCustomer: watch("username") },
-                    })
-                  }
                 >
                   Login to your account
                 </button>

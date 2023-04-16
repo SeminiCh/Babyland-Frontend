@@ -3,6 +3,7 @@ import React from "react";
 import PieChart from "../../Components/PieChart";
 import SidebarAdmin from "../SidebarAdmin";
 import AdminNannyChart from "../../Components/AdminNannyChart";
+import AreaChart from "../../Components/AreaChart";
 
 function DashboardAdmin() {
   return (
@@ -38,7 +39,7 @@ function DashboardAdmin() {
               </div>
             </div>
             <div className="flex items-center justify-center h-96 mb-4 rounded bg-red-700 dark:bg-gray-800">
-              <PieChart />
+              <AreaChart />
             </div>
           </div>
         </div>

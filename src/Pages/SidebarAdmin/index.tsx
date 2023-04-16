@@ -26,12 +26,11 @@ function SidebarAdmin() {
               </Link>
             </li>
             <li className="m-2  text-white">
-              <Link to="/nannyTableAdmin">
+              <Link to="/addAgent">
                 {" "}
-                <button className="px-8 py-3"> Nannies </button>{" "}
+                <button className="px-8 py-3"> Agents </button>{" "}
               </Link>
             </li>
-
             <li className="m-2  text-white">
               <Link to="/parenttableAdmin">
                 {" "}
@@ -39,13 +38,26 @@ function SidebarAdmin() {
               </Link>
             </li>
             <li className="m-2  text-white">
-              <Link to="/addAgent">
+              <Link to="/nannyTableAdmin">
                 {" "}
-                <button className="px-8 py-3"> Agents </button>{" "}
+                <button className="px-8 py-3"> Nannies </button>{" "}
+              </Link>
+            </li>
+
+            <li className="m-2  text-white">
+              <Link to="/viewnannyrating">
+                {" "}
+                <button className="px-8 py-3"> Ratings </button>{" "}
               </Link>
             </li>
             <li className="m-2  text-white">
-              <Link to="/">
+              <Link to="/reportAdmin">
+                {" "}
+                <button className="px-8 py-3"> Reports </button>{" "}
+              </Link>
+            </li>
+            <li className="m-2  text-white">
+              <Link to="/viewSuggestion">
                 {" "}
                 <button className="px-8 py-3"> Suggestions </button>{" "}
               </Link>

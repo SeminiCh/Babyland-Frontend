@@ -31,6 +31,9 @@ interface ParentFormData {
   parentImg: String;
   parentNCopy: String;
   nannyNic: String;
+  parentMonth: String;
+  ParentYear: String;
+  parentTime: String;
   parentBabySpecialCare: String;
 }
 
@@ -114,6 +117,9 @@ function parentInfomation() {
       parentPhoneMoile,
       parentNic,
       parentBabyAge,
+      parentMonth,
+      ParentYear,
+      parentTime,
       parentNCopy,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       nannyNic,
@@ -132,6 +138,9 @@ function parentInfomation() {
         parentPhoneMoile,
         parentNic,
         parentBabyAge,
+        parentMonth,
+        ParentYear,
+        parentTime,
         parentNCopy: base64codeParentNic,
         nannyNic: nannyData.nannyNic,
       };
@@ -350,6 +359,62 @@ function parentInfomation() {
                 required
               />
             </div>
+            <div className="mb-6">
+              <label
+                htmlFor="parentBabySpecialCare"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Is your Baby Differenty abled?
+              </label>
+              <input
+                {...register("parentBabySpecialCare", {
+                  required: true,
+                })}
+                type="text"
+                id="parentBabySpecialCare"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
+            </div>
+            <div className="mb-6">
+              <label
+                htmlFor="parentDate"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Date
+              </label>
+              <select
+                {...register("parentMonth", {
+                  required: true,
+                })}
+                id="parentMonth"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              >
+                <option value="January"> January </option>
+                <option value="February"> February </option>
+                <option value="March"> March </option>
+                <option value="April"> April </option>
+                <option value="May"> May </option>
+                <option value="June"> June </option>
+                <option value="July"> July </option>
+                <option value="August"> August </option>
+                <option value="September"> September </option>
+                <option value="October"> October </option>
+                <option value="November"> November </option>
+                <option value="December"> December </option>
+              </select>
+              <select
+                {...register("ParentYear", {
+                  required: true,
+                })}
+                id="ParentYear"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              >
+                <option value="2023"> 2023 </option>
+              </select>
+            </div>
           </div>
           {/* <div className="mb-6">
             <label
@@ -380,23 +445,7 @@ function parentInfomation() {
               required
             />
           </div> */}
-          <div className="mb-6">
-            <label
-              htmlFor="parentBabySpecialCare"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Is your Baby Differenty abled?
-            </label>
-            <input
-              {...register("parentBabySpecialCare", {
-                required: true,
-              })}
-              type="text"
-              id="parentBabySpecialCare"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div>
+
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"

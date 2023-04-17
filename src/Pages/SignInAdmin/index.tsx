@@ -65,8 +65,7 @@ function SignIn() {
             message: "Username or Password is incorrect",
           });
         } else {
-          localStorage.setItem("username", res.usernameCustomer);
-          navigate("/homeview");
+          navigate("/dashboardAdmin");
         }
       });
   });
@@ -140,29 +139,6 @@ function SignIn() {
                 >
                   Login to your account
                 </button>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                  Not registered?{" "}
-                  <a
-                    href="RegisterCustomer"
-                    className="text-red-700 hover:underline dark:text-red-700"
-                  >
-                    Create account
-                  </a>
-                </div>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                  <label
-                    htmlFor="navigateAgent"
-                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 mr-2"
-                  >
-                    Do you want to insert nanny details?
-                  </label>
-                  <a
-                    href="SignInAgent"
-                    className="ml-auto text-sm text-red-700 hover:underline dark:text-red-700"
-                  >
-                    Click Here!
-                  </a>
-                </div>
               </form>
             </FormProvider>
           </div>

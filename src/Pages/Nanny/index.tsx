@@ -32,13 +32,25 @@ function Nanny() {
       }
     }
     fetchNannyData();
-  });
+  }, []);
 
   return (
     <>
       <NavigationbarcustomerLogged />
       <div className="w-full pt-24">
         <div className="max-w-[1240px] mx-auto px-2">
+          <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+            <label className="ml-2 text-lg font-medium text-gray-900 dark:text-gray-300 mr-2">
+              Did you not find a nanny profile that matches with your
+              requirements? Please letus know your Requirements!
+            </label>
+            <a
+              href="/specialreq"
+              className="ml-auto text-sm text-red-700 hover:underline dark:text-red-700"
+            >
+              Click Here!
+            </a>
+          </div>
           <p className="text-2xl py-4 text-gray-500 text-center">
             {" "}
             <div className=" float-left w-fit flex justify-between items-center pb-1 dark:bg-gray-900">
@@ -168,8 +180,8 @@ function Nanny() {
                     nanny.nannyLanguage3.includes(queryLanguages)) &&
                   (nanny.nannyPrefferedDistrict1.includes(queryDistricts) ||
                     nanny.nannyPrefferedDistrict2.includes(queryDistricts)),
-                // nanny.nannyAge > queryMinAge &&
-                // nanny.nannyAge < queryMaxAge,
+                // queryMaxAge > nanny.nannyAge &&
+                // nanny.nannyAge > queryMinAge,
               )
               .map((nanny: any) => {
                 return (

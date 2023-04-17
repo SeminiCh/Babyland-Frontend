@@ -50,18 +50,6 @@ function SidebarAdmin() {
                 <button className="px-8 py-3"> Ratings </button>{" "}
               </Link>
             </li>
-            <li className="m-2  text-white">
-              <Link to="/reportAdmin">
-                {" "}
-                <button className="px-8 py-3"> Reports </button>{" "}
-              </Link>
-            </li>
-            <li className="m-2  text-white">
-              <Link to="/viewSuggestion">
-                {" "}
-                <button className="px-8 py-3"> Suggestions </button>{" "}
-              </Link>
-            </li>
           </ul>
         </div>
         <button className="md:hidden mr-4" onClick={handleClick}>

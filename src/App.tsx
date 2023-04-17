@@ -30,6 +30,11 @@ import ContactUs from "./Pages/ContactUs";
 import ContactUsView from "./Pages/ContactUsView";
 import ReportsAdmin from "./Pages/ReportsAdmin";
 import ParentTableAgent from "./Pages/ParentTableAgent";
+import AgentRegistration from "./Pages/AgentRegistration";
+import SuccessMsg from "./Components/SucessMsg";
+import SpecialRequest from "./Pages/SpecialRequest";
+import SuccessMessageSpecialRequirement from "./Pages/SucessMessageSpecialRequirement";
+import SuccessMsgCustomerRegistration from "./Pages/SucessMessageCustomerRegistration";
 
 // import NannyCardRating from "./Components/NannyCardRating";
 
@@ -53,6 +58,7 @@ function App() {
         <Route path="/addAgent" element={<AddAgentForm />} />
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
+        <Route path="/agentRegistration" element={<AgentRegistration />} />
         <Route path="/registationSucceed" element={<RegistrationModal />} />
         <Route path="/nannyTableAgent" element={<NannyTableAgent />} />
         <Route path="/nannyTableAdmin" element={<NannyTableAdmin />} />
@@ -68,6 +74,16 @@ function App() {
         <Route path="/reportAdmin" element={<ReportsAdmin />} />
         <Route path="/viewnannyrating" element={<ViewNannyRating />} />
         <Route path="/parentTableAgent" element={<ParentTableAgent />} />
+        <Route path="/sucessBooking" element={<SuccessMsg />} />
+        <Route path="/specialreq" element={<SpecialRequest />} />
+        <Route
+          path="/sucessMessageSpecialRequest"
+          element={<SuccessMessageSpecialRequirement />}
+        />
+        <Route
+          path="/sucessMsgCustomerRegistration"
+          element={<SuccessMsgCustomerRegistration />}
+        />
       </Routes>
     </Router>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -12,6 +13,7 @@ import logoImage from "../../Assets/imageLogo002.png";
 import signupImage from "../../Assets/imageSignin001.jpg";
 import Footer from "../../Components/Footer";
 import NavigationbarAgent from "../../Lib/NavigationBarAgent";
+import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 
 interface AgentLoginFormData {
   agentCompanyName: string;
@@ -73,7 +75,7 @@ function SignInAgent() {
   });
   return (
     <>
-      <NavigationbarAgent />
+      <Navigationbarcustomer />
       <main className="flex items-center justify-center h-screen">
         <div className="bg-white rounded-lg border-gray-500 shadow-md flex justify-center items-center">
           <div className="h-full flex-1 w-80">
@@ -139,6 +141,15 @@ function SignInAgent() {
                 >
                   Login to your account
                 </button>
+                <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+                  Not registered?{" "}
+                  <a
+                    href="AgentRegistration"
+                    className="text-red-700 hover:underline dark:text-red-700"
+                  >
+                    Create account
+                  </a>
+                </div>
               </form>
             </FormProvider>
           </div>

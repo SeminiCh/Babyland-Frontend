@@ -24,7 +24,7 @@ function DetailedNanny() {
       }
     }
     fetchNannyData();
-  });
+  }, []);
   return (
     <>
       <NavigationbarcustomerLogged />
@@ -47,16 +47,36 @@ function DetailedNanny() {
                     Special Notes{" "}
                   </h3>
                   <p className=" font-normal text-gray-700 dark:text-gray-400">
-                    <span> {nannyData.nannyDifferentlyAbledCare} </span>
+                    <span>
+                      {" "}
+                      {nannyData.nannyDifferentlyAbledCare !== "false"
+                        ? nannyData.nannyDifferentlyAbledCare
+                        : ""}{" "}
+                    </span>
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    <span> {nannyData.nannyPetLover} </span>
+                    <span>
+                      {" "}
+                      {nannyData.nannyPetLover !== "false"
+                        ? nannyData.nannyPetLover
+                        : ""}{" "}
+                    </span>
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    <span> {nannyData.nannyVegetaian} </span>
+                    <span>
+                      {" "}
+                      {nannyData.nannyVegetaian !== "false"
+                        ? nannyData.nannyVegetaian
+                        : " "}{" "}
+                    </span>
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    <span> {nannyData.nannyPreparingChildMeal} </span>
+                    <span>
+                      {" "}
+                      {nannyData.nannyPreparingChildMeal !== "false"
+                        ? nannyData.nannyPreparingChildMeal
+                        : " "}{" "}
+                    </span>
                   </p>
                 </div>
                 <div className="flex justify-between items-center">
@@ -111,8 +131,17 @@ function DetailedNanny() {
                   Languages :{" "}
                   <span>
                     {" "}
-                    {nannyData.nannyLanguage1} , {nannyData.nannyLanguage2} ,{" "}
-                    {nannyData.nannyLanguage3}
+                    {nannyData.nannyLanguage1 !== "false"
+                      ? nannyData.nannyLanguage1
+                      : ""}{" "}
+                    ,{" "}
+                    {nannyData.nannyLanguage2 !== "false"
+                      ? nannyData.nannyLanguage2
+                      : ""}{" "}
+                    ,{" "}
+                    {nannyData.nannyLanguage3 !== "false"
+                      ? nannyData.nannyLanguage3
+                      : ""}
                   </span>
                 </p>
                 <p>

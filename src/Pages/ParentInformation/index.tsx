@@ -6,7 +6,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
@@ -17,7 +17,6 @@ interface NannyUpdateData {
 }
 
 interface ParentFormData {
-  usernameCustomer: String;
   parentFullName: String;
   parentRelationshipToBaby: String;
   parentOccupation: String;
@@ -42,6 +41,7 @@ type NannyInfoState = {
 };
 
 function parentInfomation() {
+  const navigate = useNavigate();
   const nannyDetails = useLocation();
   const { nannyNic: NIC } = nannyDetails.state as NannyInfoState;
   const [nannyData, setNannyData] = useState<any>([]);
@@ -54,7 +54,8 @@ function parentInfomation() {
       }
     }
     fetchNannyData();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   let base64codeParentNic: string | number | readonly string[] | undefined;
   let base64codeParentPhoto: string | number | readonly string[] | undefined;
@@ -104,7 +105,6 @@ function parentInfomation() {
 
   const onSubmit = handleSubmit(
     ({
-      usernameCustomer,
       parentFullName,
       parentRelationshipToBaby,
       parentAddress,
@@ -125,7 +125,7 @@ function parentInfomation() {
       nannyNic,
     }) => {
       const parent = {
-        usernameCustomer,
+        usernameCustomer: localStorage.getItem("username"),
         parentFullName,
         parentRelationshipToBaby,
         parentAddress,
@@ -148,9 +148,33 @@ function parentInfomation() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parent),
-      }).then(() => {
+      }).then(async () => {
         // eslint-disable-next-line no-console
         console.log("New Parent is added!");
+
+        const url = `http://localhost:8080/api/v1/nanny/update/status`;
+        await fetch(url, {
+          method: "PUT",
+          body: JSON.stringify({
+            availability: "No",
+            nannyNic: nannyData.nannyNic,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Something Went Wrong");
+            }
+
+            console.log(response);
+
+            navigate("/sucessbooking");
+          })
+          .catch(() => {
+            console.log("E");
+          });
       });
     },
   );
@@ -159,26 +183,8 @@ function parentInfomation() {
       <NavigationbarcustomerLogged />
       <div className="p-24">
         <form onSubmit={onSubmit}>
-          <h1> Parent Information </h1>
+          <h1> Booking Information </h1>
           <div className="grid gap-6 mb-6 md:grid-cols-2 bg-blue-200 p-10">
-            <div>
-              <label
-                htmlFor="usernameCustomer"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Your Username
-              </label>
-              <input
-                {...register("usernameCustomer", {
-                  required: true,
-                })}
-                type="text"
-                id="usernameCustomer"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Username"
-                required
-              />
-            </div>
             <div>
               <label
                 htmlFor="parentFullName"
@@ -324,7 +330,7 @@ function parentInfomation() {
                 required
               />
             </div>
-            <div>
+            {/* <div>
               <label
                 htmlFor="parentBabbiesCount"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -340,13 +346,13 @@ function parentInfomation() {
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
-            </div>
+            </div> */}
             <div>
               <label
                 htmlFor="parentBabyAge"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Baby Details
+                Your Baby Age
               </label>
               <input
                 {...register("parentBabyAge", {
@@ -361,61 +367,29 @@ function parentInfomation() {
             </div>
             <div className="mb-6">
               <label
-                htmlFor="parentBabySpecialCare"
+                htmlFor="parentTime"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Is your Baby Differenty abled?
-              </label>
-              <input
-                {...register("parentBabySpecialCare", {
-                  required: true,
-                })}
-                type="text"
-                id="parentBabySpecialCare"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="parentDate"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                Date
+                Contract Time
               </label>
               <select
-                {...register("parentMonth", {
+                {...register("parentTime", {
                   required: true,
                 })}
-                id="parentMonth"
+                id="parentTime"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               >
-                <option value="January"> January </option>
-                <option value="February"> February </option>
-                <option value="March"> March </option>
-                <option value="April"> April </option>
-                <option value="May"> May </option>
-                <option value="June"> June </option>
-                <option value="July"> July </option>
-                <option value="August"> August </option>
-                <option value="September"> September </option>
-                <option value="October"> October </option>
-                <option value="November"> November </option>
-                <option value="December"> December </option>
-              </select>
-              <select
-                {...register("ParentYear", {
-                  required: true,
-                })}
-                id="ParentYear"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              >
-                <option value="2023"> 2023 </option>
+                <option value="1 Month"> 1 Month</option>
+                <option value="2 Months"> 2 Months </option>
+                <option value="3 Months"> 3 Months </option>
+                <option value="4 Months"> 4 Months </option>
+                <option value="5 Months"> 5 Months </option>
+                <option value="6 Months"> 6 Months </option>
               </select>
             </div>
           </div>
+
           {/* <div className="mb-6">
             <label
               htmlFor="parentNCopy"
@@ -449,24 +423,24 @@ function parentInfomation() {
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-            onClick={(e) => {
-              const url = `http://localhost:8080/api/v1/nanny/update/${nannyData.nannyNic}`;
-              fetch(url, {
-                method: "PUT",
-                body: JSON.stringify({
-                  availability: "No",
-                  nannyNiC: nannyData.nannyNic,
-                }),
-              })
-                .then((response) => {
-                  if (!response.ok) {
-                    throw new Error("Something Went Wrong");
-                  }
-                })
-                .catch(() => {
-                  console.log(e);
-                });
-            }}
+            // onClick={(e) => {
+            //   const url = `http://localhost:8080/api/v1/nanny/update/${nannyData.nannyNic}`;
+            //   fetch(url, {
+            //     method: "PUT",
+            //     body: JSON.stringify({
+            //       availability: "No",
+            //       nannyNiC: nannyData.nannyNic,
+            //     }),
+            //   })
+            //     .then((response) => {
+            //       if (!response.ok) {
+            //         throw new Error("Something Went Wrong");
+            //       }
+            //     })
+            //     .catch(() => {
+            //       console.log(e);
+            //     });
+            // }}
           >
             Submit
           </button>

@@ -16,24 +16,31 @@ import NannyService from "../../api/services/NannyService";
 import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
 import ParentService from "../../api/services/ParentService";
 
-type CustomerInfoState = {
-  usernameCustomer: string;
-};
+// type CustomerInfoState = {
+//   usernameCustomer: string;
+// };
 function YourNannies() {
   const navigate = useNavigate();
   const customerDetails = useLocation();
-  const { usernameCustomer } = customerDetails.state as CustomerInfoState;
+  // const { usernameCustomer } = customerDetails.state as CustomerInfoState;
   const [parentData, setParentData] = useState<any>([]);
 
   useEffect(() => {
     async function fetchNannyData() {
       const response = await ParentService.getAllParents();
       if (response) {
-        setParentData(response?.data);
+        console.log(response?.data);
+        const myNannies = response?.data?.filter(
+          (bookedNanny: any) =>
+            bookedNanny.customer.usernameCustomer ===
+            localStorage.getItem("username"),
+        );
+
+        setParentData(myNannies);
       }
     }
     fetchNannyData();
-  });
+  }, []);
 
   return (
     <>
@@ -50,9 +57,9 @@ function YourNannies() {
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-1">
             {parentData
-              .filter((parent: any) =>
-                parent.customer.usernameCustomer.includes(usernameCustomer),
-              )
+              // .filter((parent: any) =>
+              //   parent.customer.usernameCustomer.includes(usernameCustomer),
+              // )
               .map((parent: any) => {
                 return (
                   <div className="flex">

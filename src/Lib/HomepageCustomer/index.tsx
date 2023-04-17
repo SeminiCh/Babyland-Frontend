@@ -132,34 +132,7 @@ function HomepageCustomer() {
           </div>
         </div>
       </div>
-      <div className="w-full p-6 bg-white">
-        <h2 className="text-3xl font-bold text-black py-8">
-          A mother’s love is more beautiful than any fresh flower.
-        </h2>
-        <form onSubmit={onSubmit}>
-          <input
-            {...register("suggestionComment", {
-              required: true,
-            })}
-            id="suggestionComment"
-            className="w-full h-52 bg-red-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-700 focus:border-red-700 block p-2.5 dark:bg-red-700 dark:border-red-800"
-            placeholder="Your Suggections will be submitted annonymousely!"
-          />
-          <p className="text-red-600 text-xs">
-            {errors.suggestionComment && "Invalid!"}
-          </p>
 
-          <div className="w-full flex justify-end">
-            <button
-              type="submit"
-              className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-            >
-              Submit
-            </button>
-          </div>
-          <img className="w-full h-80" src={FormImg} alt="/" />
-        </form>
-      </div>
       <Footer />
     </>
   );

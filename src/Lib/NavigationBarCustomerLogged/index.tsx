@@ -6,6 +6,7 @@ import logoImage from "../../Assets/imageLogo002.png";
 function NavigationbarcustomerLogged() {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
+  // const navigate = useNavigate();
 
   return (
     <div className="w-screen h-[80px] z-10 bg-white fixed drop-shadow-lg">
@@ -28,7 +29,6 @@ function NavigationbarcustomerLogged() {
             </li>
             <li className="m-2  text-red-800">
               <Link to="/mynannies">
-                {" "}
                 <button className="px-8 py-3"> Your Nannies </button>{" "}
               </Link>
             </li>

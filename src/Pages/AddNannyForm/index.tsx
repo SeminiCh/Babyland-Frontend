@@ -147,6 +147,7 @@ function addNannyForm() {
         agentCompanyName,
         nannyPrefferedDistrict1,
         nannyPrefferedDistrict2,
+        // nannySalary: 0,
       };
       fetch("http://localhost:8080/api/v1/nanny/save", {
         method: "POST",
@@ -168,7 +169,7 @@ function addNannyForm() {
       }
     }
     fetchAgentData();
-  });
+  }, []);
   return (
     <>
       <SidebarAdmin />

@@ -1,17 +1,17 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/alt-text */
 
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import NannyService from "../../api/services/NannyService";
-import NavigationbarcustomerLogged from "../../Lib/NavigationBarCustomerLogged";
+import SidebarAdmin from "../SidebarAdmin";
 
 type NannyInfoState = {
   nannyNic: string;
 };
 
-function DetailedNanny() {
-  const navigate = useNavigate();
+function DetailedNannyAgent() {
   const nannyDetails = useLocation();
   const { nannyNic } = nannyDetails.state as NannyInfoState;
   const [nannyData, setNannyData] = useState<any>([]);
@@ -24,10 +24,10 @@ function DetailedNanny() {
       }
     }
     fetchNannyData();
-  }, []);
+  });
   return (
     <>
-      <NavigationbarcustomerLogged />
+      <SidebarAdmin />
       <main className="flex items-center justify-center h-screen pt-20">
         {" "}
         <div className="w-fit h-fit m-10 bg-blue-50 p-5">
@@ -37,64 +37,27 @@ function DetailedNanny() {
               <img
                 className="object-cover w-72 h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
                 src={nannyData.nannyImg}
-                alt=""
+                alt="nanny"
               />
               <div className="pt-5">
                 <p className="text-2xl"> {nannyData.nannyFullName} </p>
-                <p className="text-lg">
-                  {" "}
-                  Monthly Salary: LKR {nannyData.nannySalary}
-                </p>
                 <div className="bg-slate-200 p-2 my-1 rounded-md w-56">
                   <h3 className="text-lg text-red-700 border-l-2">
                     {" "}
                     Special Notes{" "}
                   </h3>
                   <p className=" font-normal text-gray-700 dark:text-gray-400">
-                    <span>
-                      {" "}
-                      {nannyData.nannyDifferentlyAbledCare !== "false"
-                        ? nannyData.nannyDifferentlyAbledCare
-                        : ""}{" "}
-                    </span>
+                    <span> {nannyData.nannyDifferentlyAbledCare} </span>
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    <span>
-                      {" "}
-                      {nannyData.nannyPetLover !== "false"
-                        ? nannyData.nannyPetLover
-                        : ""}{" "}
-                    </span>
+                    <span> {nannyData.nannyPetLover} </span>
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    <span>
-                      {" "}
-                      {nannyData.nannyVegetaian !== "false"
-                        ? nannyData.nannyVegetaian
-                        : " "}{" "}
-                    </span>
+                    <span> {nannyData.nannyVegetaian} </span>
                   </p>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    <span>
-                      {" "}
-                      {nannyData.nannyPreparingChildMeal !== "false"
-                        ? nannyData.nannyPreparingChildMeal
-                        : " "}{" "}
-                    </span>
+                    <span> {nannyData.nannyPreparingChildMeal} </span>
                   </p>
-                </div>
-                <div className="flex justify-between items-center">
-                  <button
-                    type="button"
-                    className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                    onClick={() =>
-                      navigate("/parentInformation", {
-                        state: { nannyNic: nannyData.nannyNic },
-                      })
-                    }
-                  >
-                    Hire Her!
-                  </button>
                 </div>
               </div>
             </div>
@@ -135,17 +98,8 @@ function DetailedNanny() {
                   Languages :{" "}
                   <span>
                     {" "}
-                    {nannyData.nannyLanguage1 !== "false"
-                      ? nannyData.nannyLanguage1
-                      : ""}{" "}
-                    ,{" "}
-                    {nannyData.nannyLanguage2 !== "false"
-                      ? nannyData.nannyLanguage2
-                      : ""}{" "}
-                    ,{" "}
-                    {nannyData.nannyLanguage3 !== "false"
-                      ? nannyData.nannyLanguage3
-                      : ""}
+                    {nannyData.nannyLanguage1} , {nannyData.nannyLanguage2} ,{" "}
+                    {nannyData.nannyLanguage3}
                   </span>
                 </p>
                 <p>
@@ -178,4 +132,4 @@ function DetailedNanny() {
   );
 }
 
-export default DetailedNanny;
+export default DetailedNannyAgent;

@@ -15,7 +15,13 @@ function parentTableAdmin() {
     async function fetchParentDataAdmin() {
       const response = await ParentService.getAllParents();
       if (response) {
-        setParentData(response?.data);
+        console.log(response?.data);
+        const parentTableAgent = response?.data?.filter(
+          (hiredNanny: any) =>
+            hiredNanny.nanny.agent.agentCompanyName ===
+            localStorage.getItem("companyName"),
+        );
+        setParentData(parentTableAgent);
       }
     }
     fetchParentDataAdmin();
@@ -89,18 +95,23 @@ function parentTableAdmin() {
                         type="button"
                         className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                         onClick={(e) => {
-                          const url = `http://localhost:8080/api/v1/nanny/update/${parentData.nannyNic}`;
+                          const url = `http://localhost:8080/api/v1/nanny/update/status`;
                           fetch(url, {
                             method: "PUT",
                             body: JSON.stringify({
                               availability: "Yes",
                               nannyNic: parent.nanny.nannyNic,
                             }),
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
                           })
                             .then((response) => {
                               if (!response.ok) {
                                 throw new Error("Something Went Wrong");
                               }
+
+                              console.log(response);
                             })
                             .catch(() => {
                               console.log(e);

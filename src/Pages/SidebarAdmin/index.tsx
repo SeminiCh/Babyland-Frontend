@@ -20,9 +20,9 @@ function SidebarAdmin() {
           </h1>
           <ul className="hidden md:flex">
             <li className="m-2  text-white">
-              <Link to="/dashboardAdmin">
+              <Link to="/adminDashboard">
                 {" "}
-                <button className="px-8 py-3"> Dashboard </button>{" "}
+                <button className="px-8 py-3"> Overview </button>{" "}
               </Link>
             </li>
             <li className="m-2  text-white">

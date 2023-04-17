@@ -5,6 +5,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import AgentTable from "../AgentTable";
 import SidebarAdmin from "../SidebarAdmin";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
@@ -24,6 +25,7 @@ interface AgentFormData {
 }
 
 function AddAgentForm() {
+  const navigate = useNavigate();
   let base64code: string | number | readonly string[] | undefined;
   let base64codeFile: string | number | readonly string[] | undefined;
 
@@ -106,7 +108,7 @@ function AddAgentForm() {
         body: JSON.stringify(agent),
       }).then(() => {
         console.log("New Agent is added!");
-        // Navigate("/")
+        navigate("/suceeMsgAgentRegister");
       });
     },
   );

@@ -35,6 +35,11 @@ import SuccessMsg from "./Components/SucessMsg";
 import SpecialRequest from "./Pages/SpecialRequest";
 import SuccessMessageSpecialRequirement from "./Pages/SucessMessageSpecialRequirement";
 import SuccessMsgCustomerRegistration from "./Pages/SucessMessageCustomerRegistration";
+import SignInAdmin from "./Pages/SignInAdmin";
+import DetailedNannyAgent from "./Pages/DetailedViewAgent";
+import SuccessMsgAddNannyAgent from "./Pages/SucessMessageAddNannyAgent";
+import SuccessMsgAdminRegistration from "./Pages/SucessMsgAdminRegistration";
+import ViewSpecialRequest from "./Pages/ViewSpecialRequest";
 
 // import NannyCardRating from "./Components/NannyCardRating";
 
@@ -55,7 +60,7 @@ function App() {
         <Route path="/AddNanny" element={<AddNanny />} />
         <Route path="/addNannyAgent" element={<AddNannyAgent />} />
         <Route path="/signInAgent" element={<SignInAgent />} />
-        <Route path="/addAgent" element={<AddAgentForm />} />
+        <Route path="/agent" element={<AddAgentForm />} />
         <Route path="/parentInformation" element={<ParentInfo />} />
         <Route path="/registerCustomer" element={<RegisterCustomer />} />
         <Route path="/agentRegistration" element={<AgentRegistration />} />
@@ -63,6 +68,7 @@ function App() {
         <Route path="/nannyTableAgent" element={<NannyTableAgent />} />
         <Route path="/nannyTableAdmin" element={<NannyTableAdmin />} />
         <Route path="/detailedNannyAdmin" element={<DetailedNannyAdmin />} />
+        <Route path="/detailedNannyAgent" element={<DetailedNannyAgent />} />
         <Route path="/parenttableAdmin" element={<ParentTableAdmin />} />
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/nannyRating" element={<NannyRating />} />
@@ -76,6 +82,7 @@ function App() {
         <Route path="/parentTableAgent" element={<ParentTableAgent />} />
         <Route path="/sucessBooking" element={<SuccessMsg />} />
         <Route path="/specialreq" element={<SpecialRequest />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route
           path="/sucessMessageSpecialRequest"
           element={<SuccessMessageSpecialRequirement />}
@@ -84,6 +91,17 @@ function App() {
           path="/sucessMsgCustomerRegistration"
           element={<SuccessMsgCustomerRegistration />}
         />
+        <Route path="/signinAdmin" element={<SignInAdmin />} />
+        <Route
+          path="/sucessMsgAddNannyAgent"
+          element={<SuccessMsgAddNannyAgent />}
+        />
+
+        <Route
+          path="/suceeMsgAgentRegister"
+          element={<SuccessMsgAdminRegistration />}
+        />
+        <Route path="/viewspecialrequest" element={<ViewSpecialRequest />} />
       </Routes>
     </Router>
   );

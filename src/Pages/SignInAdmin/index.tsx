@@ -65,13 +65,12 @@ function SignIn() {
             message: "Username or Password is incorrect",
           });
         } else {
-          navigate("/dashboardAdmin");
+          navigate("/agent");
         }
       });
   });
   return (
     <>
-      <Navigationbarcustomer />
       <main className="flex items-center justify-center h-screen">
         <div className="bg-white rounded-lg border-gray-500 shadow-md flex justify-center items-center">
           <div className="h-full flex-1 w-80">

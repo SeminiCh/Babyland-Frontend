@@ -8,111 +8,111 @@ import { useForm } from "react-hook-form";
 import AgentTable from "../AgentTable";
 import SidebarAdmin from "../SidebarAdmin";
 
-interface AgentFormData {
-  agentCompanyName: String;
-  agentPassword: String;
-  agentEmployeeName: String;
-  agentCompanyPhone: String;
-  agentPersonPhone: String;
-  agentPersonEmail: String;
-  agentPersonDesignation: String;
-  agentPersonNic: String;
-  agentOfficerImg: String;
-  agentLiFile: String;
-  agentCompanyAddress: String;
-}
+// interface AgentFormData {
+//   agentCompanyName: String;
+//   agentPassword: String;
+//   agentEmployeeName: String;
+//   agentCompanyPhone: String;
+//   agentPersonPhone: String;
+//   agentPersonEmail: String;
+//   agentPersonDesignation: String;
+//   agentPersonNic: String;
+//   agentOfficerImg: String;
+//   agentLiFile: String;
+//   agentCompanyAddress: String;
+// }
 
 function AddAgentForm() {
-  let base64code: string | number | readonly string[] | undefined;
-  let base64codeFile: string | number | readonly string[] | undefined;
+  // let base64code: string | number | readonly string[] | undefined;
+  // let base64codeFile: string | number | readonly string[] | undefined;
 
-  const onLoad = (fileString: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    base64code = fileString;
-  };
+  // const onLoad = (fileString: any) => {
+  //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  //   base64code = fileString;
+  // };
 
-  const getbase64 = (file: any) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      onLoad(reader.result);
-    };
-  };
+  // const getbase64 = (file: any) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     onLoad(reader.result);
+  //   };
+  // };
 
-  const onChange = (e: any) => {
-    const { files } = e.target;
-    const file = files[0];
-    getbase64(file);
-    console.log(base64code);
-  };
+  // const onChange = (e: any) => {
+  //   const { files } = e.target;
+  //   const file = files[0];
+  //   getbase64(file);
+  //   console.log(base64code);
+  // };
 
-  // for certification
-  const onLoadFile = (fileString: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    base64codeFile = fileString;
-  };
-  const getbase64File = (file: any) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      onLoadFile(reader.result);
-    };
-  };
-  const onChangeFile = (e: any) => {
-    const { files } = e.target;
-    const file = files[0];
-    getbase64File(file);
-    console.log(base64codeFile);
-  };
+  // // for certification
+  // const onLoadFile = (fileString: any) => {
+  //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  //   base64codeFile = fileString;
+  // };
+  // const getbase64File = (file: any) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     onLoadFile(reader.result);
+  //   };
+  // };
+  // const onChangeFile = (e: any) => {
+  //   const { files } = e.target;
+  //   const file = files[0];
+  //   getbase64File(file);
+  //   console.log(base64codeFile);
+  // };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<AgentFormData>({ mode: "onChange" });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<AgentFormData>({ mode: "onChange" });
 
-  const onSubmit = handleSubmit(
-    ({
-      agentCompanyName,
-      agentPassword,
-      agentLiFile,
-      agentEmployeeName,
-      agentCompanyPhone,
-      agentPersonPhone,
-      agentPersonEmail,
-      agentPersonDesignation,
-      agentPersonNic,
-      agentCompanyAddress,
-      agentOfficerImg,
-    }) => {
-      const agent = {
-        agentCompanyName,
-        agentPassword,
-        agentLiFile: base64codeFile,
-        agentEmployeeName,
-        agentCompanyPhone,
-        agentPersonPhone,
-        agentPersonEmail,
-        agentPersonDesignation,
-        agentPersonNic,
-        agentOfficerImg: base64code,
-        agentCompanyAddress,
-      };
+  // const onSubmit = handleSubmit(
+  //   ({
+  //     agentCompanyName,
+  //     agentPassword,
+  //     agentLiFile,
+  //     agentEmployeeName,
+  //     agentCompanyPhone,
+  //     agentPersonPhone,
+  //     agentPersonEmail,
+  //     agentPersonDesignation,
+  //     agentPersonNic,
+  //     agentCompanyAddress,
+  //     agentOfficerImg,
+  //   }) => {
+  //     const agent = {
+  //       agentCompanyName,
+  //       agentPassword,
+  //       agentLiFile: base64codeFile,
+  //       agentEmployeeName,
+  //       agentCompanyPhone,
+  //       agentPersonPhone,
+  //       agentPersonEmail,
+  //       agentPersonDesignation,
+  //       agentPersonNic,
+  //       agentOfficerImg: base64code,
+  //       agentCompanyAddress,
+  //     };
 
-      fetch("http://localhost:8080/api/v1/agent/save", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(agent),
-      }).then(() => {
-        console.log("New Agent is added!");
-      });
-    },
-  );
+  //     fetch("http://localhost:8080/api/v1/agent/save", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(agent),
+  //     }).then(() => {
+  //       console.log("New Agent is added!");
+  //     });
+  //   },
+  // );
   return (
     <>
       <SidebarAdmin />
       <AgentTable />
-      <div className="p-24 h-screen pt-24">
+      {/* <div className="p-24 h-screen pt-24">
         <form onSubmit={onSubmit}>
           <h1> Agent Information </h1>
           <div className="grid gap-6 mb-6 md:grid-cols-2 bg-blue-200 p-10">
@@ -350,7 +350,7 @@ function AddAgentForm() {
             </button>
           </div>
         </form>
-      </div>
+      </div> */}
     </>
   );
 }

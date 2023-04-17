@@ -1,25 +1,21 @@
-/* eslint-disable no-console */
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState } from "react";
-
-import Footer from "../../Components/Footer";
 import SidebarAdmin from "../SidebarAdmin";
-import RatingService from "../../api/services/RatingService";
+import MessageService from "../../api/services/MessageService";
 
-function viewNannyRating() {
-  const [ratingData, setRatingData] = useState<any>([]);
+function ViewSpecialRequest() {
+  const [messageData, setMessageData] = useState<any>([]);
 
   useEffect(() => {
-    async function fetchRatingData() {
-      const response = await RatingService.getAllNanniesRatings();
+    async function fetchMessageData() {
+      const response = await MessageService.getAllSpecialRequests();
       if (response) {
-        setRatingData(response?.data);
+        setMessageData(response?.data);
       }
     }
-    fetchRatingData();
-  }, []);
+    fetchMessageData();
+  });
   return (
     <>
       <SidebarAdmin />
@@ -52,29 +48,21 @@ function viewNannyRating() {
             />
           </div>
         </div>
-        <h2 className="text-lg text-red-800"> Rating Information</h2>
+        <h2 className="text-lg text-red-800"> Messages </h2>
         <table className="w-fit text-sm text-gray-500 dark:text-gray-400">
           <tbody>
             <div>
-              {ratingData.map((rating: any) => {
+              {messageData.map((message: any) => {
                 return (
                   <>
                     <tr
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                      key={rating.id}
+                      key={message.id}
                     />
-                    <td className="p-4">
-                      Nanny Name : {rating.nanny.nannyFullName}
-                    </td>
-                    <td className="p-4">{rating.ratingComment}</td>
-                    <td className="p-4">Neatness: {rating.ratingValue}</td>
-                    <td className="p-4">
-                      Punctuality: {rating.puntualityRating}
-                    </td>
-                    <td className="p-4">Kindness: {rating.kindnessRating}</td>
-                    <td className="p-4">
-                      Communication: {rating.communicationRating}
-                    </td>
+                    <td className="p-4">{message.specialFullName}</td>
+                    {/* <td className="p-4">{message.specialPhoneMobile}</td> */}
+                    <td className="p-4">{message.specialAddresss}</td>
+                    <td className="p-4">{message.specialNote}</td>
                   </>
                 );
               })}
@@ -82,10 +70,8 @@ function viewNannyRating() {
           </tbody>
         </table>
       </div>
-
-      <Footer />
     </>
   );
 }
 
-export default viewNannyRating;
+export default ViewSpecialRequest;

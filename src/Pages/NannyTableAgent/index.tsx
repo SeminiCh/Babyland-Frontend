@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -12,14 +13,14 @@ import NannyService from "../../api/services/NannyService";
 import Footer from "../../Components/Footer";
 import NavigationbarAgent from "../../Lib/NavigationBarAgent";
 
-type AgentInforState = {
-  agentCompanyName: string;
-};
+// type AgentInforState = {
+//   agentCompanyName: string;
+// };
 
 function nannyTableAgent() {
   const navigate = useNavigate();
   const agentDetails = useLocation();
-  const { agentCompanyName } = agentDetails.state as AgentInforState;
+  // const { agentCompanyName } = agentDetails.state as AgentInforState;
   const [nannyData, setNannyData] = useState<any>([]);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [query, setQuery] = useState("");
@@ -28,11 +29,17 @@ function nannyTableAgent() {
     async function fetchNannyDataAdmin() {
       const response = await NannyService.getAllNannies();
       if (response) {
-        setNannyData(response?.data);
+        console.log(response?.data);
+        const nannyTableAgent = response?.data?.filter(
+          (agentRelatedNanny: any) =>
+            agentRelatedNanny.agent.agentCompanyName ===
+            localStorage.getItem("companyName"),
+        );
+        setNannyData(nannyTableAgent);
       }
     }
     fetchNannyDataAdmin();
-  });
+  }, []);
 
   return (
     <>
@@ -62,27 +69,20 @@ function nannyTableAgent() {
               type="text"
               id="searchNanniesAdmin"
               className="block p-2 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search for users"
+              placeholder="Search for users by NIC"
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>
         </div>
-        <a
-          href="/AddNanny"
-          className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-        >
-          {" "}
-          Add Nanny{" "}
-        </a>
+        <h2> Hello {localStorage.getItem("companyName")}</h2>
         <table className="w-fit text-sm text-gray-500 dark:text-gray-400">
           <tbody>
             <div>
               {nannyData
                 .filter(
                   (nanny: any) =>
-                    (nanny.nannyNic.includes(query) ||
-                      nanny.nannyFullName.toLowerCase().includes(query)) &&
-                    nanny.agent.agentCompanyName.includes(agentCompanyName),
+                    nanny.nannyNic.includes(query) ||
+                    nanny.nannyFullName.toLowerCase().includes(query),
                 )
                 .map((nanny: any) => {
                   return (
@@ -119,7 +119,7 @@ function nannyTableAgent() {
                           type="button"
                           className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                           onClick={() =>
-                            navigate("/detailedNannyAdmin", {
+                            navigate("/detailedNannyAgent", {
                               state: { nannyNic: nanny.nannyNic },
                             })
                           }

@@ -4,7 +4,8 @@
 /* eslint-disable max-len */
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer";
 import Navigationbarcustomer from "../../Lib/Navigationbarcustomer";
 import RegisterImage from "../../Assets/imageRegister006.jpg";
@@ -17,6 +18,7 @@ interface CustomerFormData {
 }
 
 function RegisterCustomer() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -37,6 +39,7 @@ function RegisterCustomer() {
         body: JSON.stringify(customer),
       }).then(() => {
         console.log("New Customer is added!");
+        navigate("/sucessMsgCustomerRegistration");
       });
     },
   );
@@ -119,14 +122,14 @@ function RegisterCustomer() {
                     "Invalid! Minimum Length should be 10 characters."}
                 </p>
               </div>
-              <Link to="/sucessMsgCustomerRegistration">
-                <button
-                  type="submit"
-                  className="w-full text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-700 dark:hover:bg-red-700 dark:focus:ring-red-800"
-                >
-                  Create account
-                </button>
-              </Link>
+
+              <button
+                type="submit"
+                className="w-full text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-700 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              >
+                Create account
+              </button>
+
               <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                 <label
                   htmlFor="navigateAgent"

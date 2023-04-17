@@ -67,6 +67,7 @@ function SignInAgent() {
             message: "Company Name or Password is incorrect",
           });
         } else {
+          localStorage.setItem("companyName", res.agentCompanyName);
           navigate("/nannyTableAgent", {
             state: { agentCompanyName: watch("agentCompanyName") },
           });

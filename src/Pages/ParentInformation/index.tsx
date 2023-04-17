@@ -199,12 +199,11 @@ function parentInfomation() {
                 type="text"
                 id="parentFullName"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Semini Pathirana"
-                required
+                placeholder="Amali Perera"
               />
               <p className="text-red-600 text-xs">
                 {errors.parentFullName &&
-                  "Invalid! Mparent Name Cannot be Empty."}
+                  "Invalid! Parent Name Cannot be Empty."}
               </p>
             </div>
             <div>
@@ -222,8 +221,11 @@ function parentInfomation() {
                 id="parentRelationshipToBaby"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Mother"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentRelationshipToBaby &&
+                  "Invalid! Parent Relationship Cannot be Empty."}
+              </p>
             </div>
             <div>
               <label
@@ -239,8 +241,11 @@ function parentInfomation() {
                 type="text"
                 id="parentOccupation"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentOccupation &&
+                  "Invalid! Mother - Occupation Cannot be Empty."}
+              </p>
             </div>
             <div>
               <label
@@ -257,6 +262,10 @@ function parentInfomation() {
                 id="parentOccupationFather"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentOccupationFather &&
+                  "Invalid! Father - Occupation Cannot be Empty."}
+              </p>
             </div>
             <div>
               <label
@@ -272,9 +281,11 @@ function parentInfomation() {
                 type="text"
                 id="parentAddress"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="No 133, Ragama rd, Nagoda"
-                required
+                placeholder="No XX, Ragama rd, Nagoda"
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentAddress && "Invalid! Address Cannot be Empty."}
+              </p>
             </div>
             <div>
               <label
@@ -290,8 +301,10 @@ function parentInfomation() {
                 type="text"
                 id="parentCity"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentCity && "Invalid! Nearest City Cannot be Empty."}
+              </p>
             </div>
 
             <div>
@@ -308,9 +321,12 @@ function parentInfomation() {
                 type="tel"
                 id="parentPhoneMoile"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="076 643 1861"
-                required
+                placeholder="07XXXXXXXX"
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentPhoneMoile &&
+                  "Invalid! Mobile Number Cannot be Empty."}
+              </p>
             </div>
             <div>
               <label
@@ -322,31 +338,18 @@ function parentInfomation() {
               <input
                 {...register("parentNic", {
                   required: true,
+                  minLength: 10,
                 })}
                 type="text"
                 id="parentNic"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="997320395v"
-                required
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentNic &&
+                  "Invalid! Minimum Length should be 10 characters."}
+              </p>
             </div>
-            {/* <div>
-              <label
-                htmlFor="parentBabbiesCount"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >
-                How many babies?
-              </label>
-              <input
-                {...register("parentBabbiesCount", {
-                  required: true,
-                })}
-                type="text"
-                id="parentBabbiesCount"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-            </div> */}
             <div>
               <label
                 htmlFor="parentBabyAge"
@@ -361,9 +364,12 @@ function parentInfomation() {
                 type="text"
                 id="parentBabyAge"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="4"
-                required
+                placeholder="4 years"
               />
+              <p className="text-red-600 text-xs">
+                {errors.parentBabyAge &&
+                  "Invalid! Baby Age should not be empty"}
+              </p>
             </div>
             <div className="mb-6">
               <label
@@ -387,60 +393,15 @@ function parentInfomation() {
                 <option value="5 Months"> 5 Months </option>
                 <option value="6 Months"> 6 Months </option>
               </select>
+              <p className="text-red-600 text-xs">
+                {errors.parentTime &&
+                  "Invalid! Contract Time Should not be empty"}
+              </p>
             </div>
           </div>
-
-          {/* <div className="mb-6">
-            <label
-              htmlFor="parentNCopy"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              NIC Copy
-            </label>
-            <input
-              type="file"
-              id="parentNCopy"
-              onChange={onChangeNicParent}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="parentImg"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Parent Image
-            </label>
-            <input
-              type="file"
-              id="parentImg"
-              onChange={onChangeParentPhoto}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-            />
-          </div> */}
-
           <button
             type="submit"
             className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-            // onClick={(e) => {
-            //   const url = `http://localhost:8080/api/v1/nanny/update/${nannyData.nannyNic}`;
-            //   fetch(url, {
-            //     method: "PUT",
-            //     body: JSON.stringify({
-            //       availability: "No",
-            //       nannyNiC: nannyData.nannyNic,
-            //     }),
-            //   })
-            //     .then((response) => {
-            //       if (!response.ok) {
-            //         throw new Error("Something Went Wrong");
-            //       }
-            //     })
-            //     .catch(() => {
-            //       console.log(e);
-            //     });
-            // }}
           >
             Submit
           </button>

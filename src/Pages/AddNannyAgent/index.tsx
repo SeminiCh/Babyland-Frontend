@@ -10,7 +10,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AgentService from "../../api/services/AgentService";
 
 import Footer from "../../Components/Footer";
@@ -145,7 +145,7 @@ function addNannyAgent() {
         availability,
         nannyDifferentlyAbledCare,
         nannyPreparingChildMeal,
-        agentCompanyName,
+        agentCompanyName: localStorage.getItem("companyName"),
         nannyPrefferedDistrict1,
         nannyPrefferedDistrict2,
       };
@@ -736,7 +736,7 @@ function addNannyAgent() {
               {errors.nannyImg && "Please upload file! This Cannot Be empty."}
             </p>
           </div>
-          <div className="mb-6">
+          {/* <div className="mb-6">
             <label
               htmlFor="agentCompanyName"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -763,14 +763,15 @@ function addNannyAgent() {
               {errors.agentCompanyName &&
                 "Invalid! Company Name Cannot Be empty."}
             </p>
-          </div>
-
-          <button
-            type="submit"
-            className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-900 dark:focus:ring-blue-800"
-          >
-            Add
-          </button>
+          </div> */}
+          <Link to="/sucessMsgAddNannyAgent">
+            <button
+              type="submit"
+              className="text-white bg-red-800 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-900 dark:focus:ring-blue-800"
+            >
+              Add
+            </button>
+          </Link>
         </form>
       </div>
       <Footer />
